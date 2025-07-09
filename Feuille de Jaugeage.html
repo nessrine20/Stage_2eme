@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feuille de Jaugeage</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 40px;
+            background-color: #f0f2f5;
+            color: #2c3e50;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+    
+        .header-bar {
+            background-color: #0056b3;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+        }
+        
+        .logo img {
+            height: 50px;
+            margin-right: 15px;
+        }
+        
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 25px;
+            border-bottom: 2px solid #eef2f7;
+        }
+
+        .header .date {
+            font-size: 20px;
+            color: #073e8d;
+            font-weight: 500;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 15px;
+            text-align: center;
+            vertical-align: middle;
+            background-color: #fff;
+            font-size: 14px;
+        }
+
+        th {
+            background-color: #f8fafc;
+            color: #0e3d84;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-bottom: 2px solid #0e3d84;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        tbody tr:hover {
+            background-color: #e1ecf9;
+        }
+
+        td[rowspan] {
+            background-color: #042f5a;
+            color: white;
+            font-weight: 500;
+        }
+
+        td.coefficient {
+            background-color: #f8fafc;
+            font-weight: 700;
+            color: #0e3d84;
+            border-bottom: 2px solid #0e3d84;
+        }
+
+        .footer {
+            padding: 15px;
+            text-align: center;
+            background-color: #f8fafc;
+            border-top: 2px solid #eef2f7;
+        }
+
+        .signatures {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+
+.signature-box {
+    width: 28%;  /* Réduit la largeur pour un meilleur espacement */
+    height: 120px; /* Augmente la hauteur pour un meilleur équilibre */
+    border: 2px solid #004C6D;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 16px;
+    text-align: center;
+    display: flex;
+    flex-direction: column; /* Pour aligner le texte verticalement */
+    align-items: center;
+    justify-content: center;
+}
+
+.signature-label {
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+        .print-button {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-bar">
+            <div class="logo">
+                <img src="logo_agil.png" alt="Logo">
+            </div>
+            <div class="title">FEUILLE DE JAUGEAGE</div>
+        </div>
+        <div class="header">
+            <div class="date" id="current-date"></div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th rowspan="2">PRODUIT</th>
+                    <th rowspan="2">N°BAC</th>
+                    <th colspan="2">HAUTEUR</th>
+                    <th rowspan="2">TEMP°</th>
+                    <th rowspan="2">DENSITE</th>
+                    <th rowspan="2">Coefficient</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td rowspan="3">S.S.P</td>
+                    <td>T9A</td>
+                    <td><input type="number" step="any" placeholder="" /></td>
+                    <td><input type="number" step="any" placeholder="" /></td>
+                    <td><input type="number" step="any" placeholder="" /></td>
+                    <td><input type="number" step="any" placeholder="" /></td>
+                    <td class="coefficient"><input type="number" step="any" placeholder="" /></td>
+                </tr>
+                <tr>
+                    <td>T9B</td>
+                    <td><input type="number" step="any" placeholder="" /></td>
+                    <td><input type="number" step="any" placeholder="" /></td>
+                    <td><input type="number" step="any" placeholder="" /></td>
+                    <td><input type="number" step="any" placeholder="" /></td>
+                    <td class="coefficient"><input type="number" step="any" placeholder="" /></td>
+                </tr>
+                <tr>
+                    <td>T7B</td>
+                    <td><input type="number" step="any" placeholder="" /></td>
+                    <td><input type="number" step="any" placeholder="" /></td>
+                    <td><input type="number" step="any" placeholder="" /></td>
+                    <td><input type="number" step="any" placeholder="" /></td>
+                    <td class="coefficient"><input type="number" step="any" placeholder="" /></td>
+                </tr>
+                <tr>
+                    <td rowspan="2">GASOIL</td>
+                    <td>T1A</td>
+                    <td><input type="number" step="any" placeholder="" /></td>
+                    <td><input type="number" step="any" placeholder="" /></td>
+                    <td><input type="number" step="any" placeholder="" /></td>
+                    <td><input type="number" step="any" placeholder="" /></td>
+                    <td class="coefficient"><input type="number" step="any" placeholder="" /></td>
+                </tr>
+                <tr>
+                    <td>T1B</td>
+                    <td><input type="number" step="any" placeholder="" /></td>
+                    <td><input type="number" step="any" placeholder="" /></td>
+                    <td><input type="number" step="any" placeholder="" /></td>
+                    <td><input type="number" step="any" placeholder="" /></td>
+                    <td class="coefficient"><input type="number" step="any" placeholder="" /></td>
+                </tr>
+                <tr>
+                    <td rowspan="2">G.S.S</td>
+                    <td>T10A</td>
+                    <td><input type="number" step="any" placeholder="" /></td>
+                    <td><input type="number" step="any" placeholder="" /></td>
+                    <td><input type="number" step="any" placeholder="" /></td>
+                    <td><input type="number" step="any" placeholder="" /></td>
+                    <td class="coefficient"><input type="number" step="any" placeholder="" /></td>
+                </tr>
+                <tr>
+                    <td>T6B</td>
+                    <td><input type="number" step="any" placeholder="" /></td>
+                    <td><input type="number" step="any" placeholder="" /></td>
+                    <td><input type="number" step="any" placeholder="" /></td>
+                    <td><input type="number" step="any" placeholder="" /></td>
+                    <td class="coefficient"><input type="number" step="any" placeholder="" /></td>
+                </tr>
+                <tr>
+                    <td rowspan="2">F.O.L</td>
+                    <td>T18A</td>
+                    <td><input type="number" step="any" placeholder="" /></td>
+                    <td><input type="number" step="any" placeholder="" /></td>
+                    <td><input type="number" step="any" placeholder="" /></td>
+                    <td><input type="number" step="any" placeholder="" /></td>
+                    <td class="coefficient"><input type="number" step="any" placeholder="" /></td>
+                </tr>
+                <tr>
+                    <td>T18B</td>
+                    <td><input type="number" step="any" placeholder="" /></td>
+                    <td><input type="number" step="any" placeholder="" /></td>
+                    <td><input type="number" step="any" placeholder="" /></td>
+                    <td><input type="number" step="any" placeholder="" /></td>
+                    <td class="coefficient"><input type="number" step="any" placeholder="" /></td>
+                </tr>
+            </tbody>
+        </table>
+        
+
+         <!-- Signatures -->
+    <div class="signatures">
+        <div class="signature-box">
+            <div>S.N.D.P</div>
+            <div class="signature-label">(signature)</div>
+        </div>
+        <div class="signature-box">
+            <div>DOUANE </div>
+            <div class="signature-label">(signature)</div>
+        </div>
+        <div class="signature-box">
+            <div>TANKMED</div>
+            <div class="signature-label">(signature)</div>
+        </div>
+    </div>
+        <button class="print-button" onclick="window.print()">Imprimer</button>
+    </div>
+    <script>
+        document.getElementById("current-date").textContent = new Date().toLocaleDateString("fr-FR");
+    </script>
+</body>
+</html>

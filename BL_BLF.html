@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bon de Livraison / Bon de Livraison Facture</title>
+    <link rel="stylesheet" href="style_BL/BLF.css">
+</head>
+<body>
+    <!-- Bande bleue avec logo et titre -->
+    <div class="header-bar">
+        <div class="logo">
+            <img src="logo_agil.png" alt="Logo de la société">
+        </div>
+        <div class="title">Bon de Livraison / Bon de Livraison Facture</div>
+    </div>
+
+    <!-- Formulaire de bon de livraison -->
+    <div class="form-container">
+        <form action="traitement_bon_livraison.php" method="POST">
+            <div class="form-group">
+                <label for="reference">Référence Bon de Livraison / Bon de Livraison Facture :</label>
+                <input type="text" id="reference" name="reference" required>
+            </div>
+            <div class="form-group">
+                <label for="date_commande">Date de Commande :</label>
+                <input type="date" id="date_commande" name="date_commande" required>
+            </div>
+            <div class="form-group">
+                <label for="client">Client :</label>
+                <input type="text" id="client" name="client" required>
+            </div>
+            <div class="form-group">
+                <label for="reference_feuille_route">Référence de Feuille de Route :</label>
+                <input type="text" id="reference_feuille_route" name="reference_feuille_route" required>
+            </div>
+            <div class="form-group">
+                <label for="matricule_camion">Matricule Camion :</label>
+                <input type="text" id="matricule_camion" name="matricule_camion" required>
+            </div>
+            <div class="form-group">
+                <label for="transporteur">Transporteur :</label>
+                <input type="text" id="transporteur" name="transporteur" required>
+            </div>
+            <div class="form-group">
+                <label for="commande">Commande :</label>
+                <input type="text" id="commande" name="commande" required>
+            </div>
+            <div class="form-group">
+                <label for="facture">Facture :</label>
+                <input type="text" id="facture" name="facture" required>
+            </div>
+            <div class="form-group">
+                <label for="montant_decBLF">Montant Déc BLF :</label>
+                <input type="number" id="montant_decBLF" name="montant_decBLF" required>
+            </div>
+            <div class="form-group">
+                <label for="date_livraison">Date de Livraison :</label>
+                <input type="date" id="date_livraison" name="date_livraison" required>
+            </div>
+            <div class="form-group">
+                <label for="type_produit">Type de Produit :</label>
+                <input type="text" id="type_produit" name="type_produit" required>
+            </div>
+            <div class="form-group">
+                <label for="point_chute">Point de Chute :</label>
+                <input type="text" id="point_chute" name="point_chute" required>
+            </div>
+            <button type="submit">Enregistrer</button>
+        </form>
+    </div>
+</body>
+</html>

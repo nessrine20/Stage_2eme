@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>FICHE DE VALEUR</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+            justify-content: center;
+            
+        }
+        .header-bar {
+            background-color: #0056b3;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+        }
+        .logo img {
+            height: 50px;
+            margin-right: 15px;
+        }
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px 0;
+            text-align: center;
+        }
+        .subtitle {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+
+        }
+        table {
+            width: 90%;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            margin: 0 auto
+
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f8f8f8;
+        }
+        .date {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 5px;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .print-button {
+            display:center ;
+            width: 200px;
+            margin: 40px auto;
+            padding: 10px;
+            font-size: 17px;
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        
+        .total-row {
+            background-color: #f8f8f8;
+            font-weight: bold;
+        }
+        .total-cell {
+            font-weight: bold;
+            background-color: #e6e6e6;
+        }
+        .signatures {
+    display: flex;
+    margin-top: 50px;
+}
+
+.signature-box {
+    width: 20%;  /* Réduit la largeur pour un meilleur espacement */
+    height: 120px; /* Augmente la hauteur pour un meilleur équilibre */
+    border: 2px solid #004C6D;
+    border-radius: 4px;
+    padding: 0px;
+    font-size: 16px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto; /* Cela permet de centrer horizontalement */
+
+}
+
+.signature-label {
+    font-size: 14px;
+    margin-top: 10px;
+}
+@media print {
+            .print-button {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header-bar">
+        <div class="logo">
+            <img src="logo_agil.png" alt="Logo de la société">
+        </div>
+        <div class="title">S.N.D.P - SKHIRA</div>
+    </div>
+
+    <div class="title">FICHE DE VALEUR</div>       
+    <div class="date">SKHIRA, LE 08/01/2025</div>
+
+    <table id="valueTable">
+        <thead>
+            <tr>
+                <th>Produit</th>
+                <th>NOMENCLATURE</th>
+                <th>VOLUME</th>
+                <th>POIDS</th>
+                <th>P.UNITAIRE</th>
+                <th>Valeur en dnt</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="text" value="S.S.P IMPORTE"></td>
+                <td><input type="text" value=""></td>
+                <td><input type="number" step="any" class="vol"></td>
+                <td><input type="number" step="any" class="poids"></td>
+                <td><input type="number" step="any" value="" class="prix"></td>
+                <td><input type="number" step="any" value="" class="valeur"></td>
+            </tr>
+            <tr>
+                <td><input type="text" value="S.S.P IMPORTE"></td>
+                <td><input type="text" value=""></td>
+                <td><input type="number" step="any" class="vol"></td>
+                <td><input type="number" step="any" class="poids"></td>
+                <td><input type="number" step="any" value="" class="prix"></td>
+                <td><input type="number" step="any" value="" class="valeur"></td>
+            </tr>
+            <tr>
+                <td><input type="text" value="S.S.P PREMUIM"></td>
+                <td><input type="text" value=""></td>
+                <td><input type="number" step="any" class="vol"></td>
+                <td><input type="number" step="any" class="poids"></td>
+                <td><input type="number" step="any" value="" class="prix"></td>
+                <td><input type="number" step="any" value="" class="valeur"></td>
+            </tr>
+            <tr>
+                <td><input type="text" value="GASOIL IMPORTE"></td>
+                <td><input type="text" value=""></td>
+                <td><input type="number" step="any" class="vol"></td>
+                <td><input type="number" step="any" class="poids"></td>
+                <td><input type="number" step="any" value="" class="prix"></td>
+                <td><input type="number" step="any" value="" class="valeur"></td>
+            </tr>
+            <tr>
+                <td><input type="text" value="G.S.S"></td>
+                <td><input type="text" value=""></td>
+                <td><input type="number" step="any" value="" class="vol"></td>
+                <td><input type="number" step="any" value="" class="poids"></td>
+                <td><input type="number" step="any" value="" class="prix"></td>
+                <td><input type="number" step="any" value="" class="valeur"></td>
+            </tr>
+            <tr>
+                <td><input type="text" value="G.S.S PREMUIM"></td>
+                <td><input type="text" value=""></td>
+                <td><input type="number" step="any" class="vol"></td>
+                <td><input type="number" step="any" class="poids"></td>
+                <td><input type="number" step="any" value="" class="prix"></td>
+                <td><input type="number" step="any" value="" class="valeur"></td>
+            </tr>
+            <tr>
+                <td><input type="text" value="F.O.L"></td>
+                <td><input type="text" value=""></td>
+                <td><input type="number" step="any" class="vol"></td>
+                <td><input type="number" step="any" class="poids"></td>
+                <td><input type="number" step="any" value="" class="prix"></td>
+                <td><input type="number" step="any" value="" class="valeur"></td>
+            </tr>
+            <tr class="total-row">
+                <td colspan="5">Total</td>
+                <td><input type="number" step="any" id="totalValeur" readonly class="total-cell"></td>
+            </tr>
+        </tbody>
+    </table>
+    
+         <!-- Signatures -->
+         <div class="signatures">
+            <div class="signature-box">
+                <div class="signature-label">(signature)</div>
+            </div>
+    <button class="print-button" onclick="window.print()">Imprimer</button>
+
+    <script>
+        // Fonction pour calculer la valeur d'une ligne
+        function calculateRowValue(row) {
+            const vol = parseFloat(row.querySelector('.vol').value) || 0;
+            const prix = parseFloat(row.querySelector('.prix').value) || 0;
+            const valeur = vol * prix;
+            row.querySelector('.valeur').value = valeur.toFixed(3);
+            return valeur;
+        }
+
+        // Fonction pour calculer le total
+        function calculateTotal() {
+            const rows = document.querySelectorAll('tr:not(.total-row)');
+            let total = 0;
+            
+            rows.forEach(row => {
+                if (row.querySelector('.valeur')) {
+                    total += parseFloat(row.querySelector('.valeur').value) || 0;
+                }
+            });
+            
+            document.getElementById('totalValeur').value = total.toFixed(3);
+        }
+
+        // Ajouter les écouteurs d'événements
+        document.querySelectorAll('.vol, .prix').forEach(input => {
+            input.addEventListener('input', function() {
+                calculateRowValue(this.closest('tr'));
+                calculateTotal();
+            });
+        });
+
+        // Calculer le total initial
+        calculateTotal();
+
+        // Fonction pour calculer la valeur en DNT
+        function calculateValue(row) {
+            var volume = parseFloat(document.getElementById('vol' + row).value);
+            var price = parseFloat(document.getElementById('prix' + row).value);
+            var totalValue = volume * price;
+            document.getElementById('valeur' + row).value = totalValue.toFixed(2);
+        }
+
+        // Fonction pour formater la date
+        function formatDate() {
+            const date = new Date();
+            const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+            return date.toLocaleDateString('fr-FR', options);
+        }
+
+        // Initialisation de la date si nécessaire
+        document.addEventListener('DOMContentLoaded', function() {
+            const dateField = document.querySelector('.date');
+            if (dateField) {
+                dateField.textContent = 'SKHIRA, LE ' + formatDate();
+            }
+        });
+    </script>
+</body>
+</html>

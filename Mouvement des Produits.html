@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouvement des Produits</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            margin: 0;
+            flex-direction: column;
+            text-align: center;
+        }
+        .header-bar {
+            background-color: #0056b3;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+        }
+        .logo img {
+            height: 50px;
+            margin-right: 15px;
+        }
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .container {
+            width: 95%;
+            margin: 3px auto;
+            padding: 40px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+            font-size: 14px;
+        }
+        th {
+            background-color: #004C6D;
+            color: white;
+            font-weight: bold;
+        }
+        td input {
+            width: 100%;
+            padding: 3px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            text-align: center;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        h1 {
+            color: #004C6D;
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        td[colspan="2"] {
+            text-align: center;
+            font-weight: bold;
+        }
+        .signatures {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+        .signature-box {
+            width: 45%;
+            height: 100px;
+            border: 2px solid #004C6D;
+            border-radius: 4px;
+            padding: 10px;
+            font-size: 16px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .signature-label {
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        .print-button {
+            background-color: #004C6D;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .print-button:hover {
+            background-color: #003b54;
+        }
+    </style>
+</head>
+<body>
+
+ <!-- Bande bleue avec logo et titre -->
+ <div class="header-bar">
+    <div class="logo">
+        <img src="logo_agil.png" alt="Logo de la société">
+    </div>
+    <div class="title">Mouvement des Produits</div>
+</div>
+
+<div class="container">
+    <h1>Mouvement des Produits Du Journée</h1>
+    <span style="font-size: 20px; color: rgb(12, 2, 39);">28 Janvier 2025</span>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Catégories</th>
+            <th>Super Sans Plomb</th>
+            <th>Super Sans Plomb Premium</th>
+            <th>Gasoil Ordinaire</th>
+            <th>Gasoil International</th>
+            <th>Gasoil Sans Soufre</th>
+            <th>Gasoil Sans Soufre Premium</th>
+            <th>Fuel Lourds</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Stock Initial</td>
+            <td><input type="number" class="stock-initial" value=""></td>
+            <td><input type="number" class="stock-initial" value=""></td>
+            <td><input type="number" class="stock-initial" value=""></td>
+            <td><input type="number" class="stock-initial" value=""></td>
+            <td><input type="number" class="stock-initial" value=""></td>
+            <td><input type="number" class="stock-initial" value=""></td>
+            <td><input type="number" class="stock-initial" value=""></td>
+        </tr>
+        <tr>
+            <td>Entrée</td>
+            <td><input type="number" class="entry" value=""></td>
+            <td><input type="number" class="entry" value=""></td>
+            <td><input type="number" class="entry" value=""></td>
+            <td><input type="number" class="entry" value=""></td>
+            <td><input type="number" class="entry" value=""></td>
+            <td><input type="number" class="entry" value=""></td>
+            <td><input type="number" class="entry" value=""></td>
+        </tr>
+        <tr class="section-header">
+            <td>Vol Apparent</td>
+            <td><input type="number" class="vol-app" value=""></td>
+            <td><input type="number" class="vol-app" value=""></td>
+            <td><input type="number" class="vol-app" value=""></td>
+            <td><input type="number" class="vol-app" value=""></td>
+            <td><input type="number" class="vol-app" value=""></td>
+            <td><input type="number" class="vol-app" value=""></td>
+            <td><input type="number" class="vol-app" value=""></td>
+        </tr>
+        <tr>
+            <td>Ventes</td>
+            <td><input type="number" class="sales" value=""></td>
+            <td><input type="number" class="sales" value=""></td>
+            <td><input type="number" class="sales" value=""></td>
+            <td><input type="number" class="sales" value=""></td>
+            <td><input type="number" class="sales" value=""></td>
+            <td><input type="number" class="sales" value=""></td>
+            <td><input type="number" class="sales" value=""></td>
+        </tr>
+        <tr>
+            <td>Transfert</td>
+            <td><input type="number" class="transfer" value=""></td>
+            <td><input type="number" class="transfer" value=""></td>
+            <td><input type="number" class="transfer" value=""></td>
+            <td><input type="number" class="transfer" value=""></td>
+            <td><input type="number" class="transfer" value=""></td>
+            <td><input type="number" class="transfer" value=""></td>
+            <td><input type="number" class="transfer" value=""></td>
+        </tr>
+        <tr>
+            <td>Coefficient</td>
+            <td><input type="number" class="coefficient" value=""></td>
+            <td><input type="number" class="coefficient" value=""></td>
+            <td><input type="number" class="coefficient" value=""></td>
+            <td><input type="number" class="coefficient" value=""></td>
+            <td><input type="number" class="coefficient" value=""></td>
+            <td><input type="number" class="coefficient" value=""></td>
+            <td><input type="number" class="coefficient" value=""></td>
+        </tr>
+        <tr>
+            <td>Volume à 15°</td>
+            <td><input type="number" class="vol-15" readonly></td>
+            <td><input type="number" class="vol-15" readonly></td>
+            <td><input type="number" class="vol-15" readonly></td>
+            <td><input type="number" class="vol-15" readonly></td>
+            <td><input type="number" class="vol-15" readonly></td>
+            <td><input type="number" class="vol-15" readonly></td>
+            <td><input type="number" class="vol-15" readonly></td>
+        </tr>
+        <tr>
+            <td>Total Sortie</td>
+            <td><input type="number" class="total-sortie" readonly></td>
+            <td><input type="number" class="total-sortie" readonly></td>
+            <td><input type="number" class="total-sortie" readonly></td>
+            <td><input type="number" class="total-sortie" readonly></td>
+            <td><input type="number" class="total-sortie" readonly></td>
+            <td><input type="number" class="total-sortie" readonly></td>
+            <td><input type="number" class="total-sortie" readonly></td>
+        </tr>
+        <tr>
+            <td>Régularisation</td>
+            <td><input type="number" class="regularisation" value=""></td>
+            <td><input type="number" class="regularisation" value=""></td>
+            <td><input type="number" class="regularisation" value=""></td>
+            <td><input type="number" class="regularisation" value=""></td>
+            <td><input type="number" class="regularisation" value=""></td>
+            <td><input type="number" class="regularisation" value=""></td>
+            <td><input type="number" class="regularisation" value=""></td>
+        </tr>
+        <tr>
+            <td>Stock Final</td>
+            <td><input type="number" class="stock-final" readonly></td>
+            <td><input type="number" class="stock-final" readonly></td>
+            <td><input type="number" class="stock-final" readonly></td>
+            <td><input type="number" class="stock-final" readonly></td>
+            <td><input type="number" class="stock-final" readonly></td>
+            <td><input type="number" class="stock-final" readonly></td>
+            <td><input type="number" class="stock-final" readonly></td>
+        </tr>
+        <tr>
+            <td>Stock Final Total</td>
+            <td colspan="2"><input type="number" class="stock-final total-stock-final-1" readonly></td>
+            <td colspan="2"><input type="number" class="stock-final total-stock-final-2" readonly></td>
+            <td colspan="2"><input type="number" class="stock-final total-stock-final-3" readonly></td>
+            <td><input type="number" class="stock-final total-stock-final-4" readonly></td>
+        </tr>
+        </tbody>
+    </table>
+    <!-- Signatures -->
+    <div class="signatures">
+        <div class="signature-box">
+            <div>Responsable CM1</div>
+            <div class="signature-label">(signature)</div>
+        </div>
+        <div class="signature-box">
+            <div>Chef Dépôt </div>
+            <div class="signature-label">(signature)</div>
+        </div>
+    </div>
+    <!-- Bouton d'impression -->
+    <button class="print-button">Imprimer</button>
+</div>
+</div>
+
+<script>
+   function calculateStockFinal() {
+    let stockInitialElements = document.querySelectorAll('.stock-initial');
+    let entryElements = document.querySelectorAll('.entry');
+    let salesElements = document.querySelectorAll('.sales');
+    let stockFinalElements = document.querySelectorAll('.stock-final');
+
+    // Variables pour Stock Final Total pour chaque paire de produits
+    let totalStockFinal1 = 0;
+    let totalStockFinal2 = 0;
+    let totalStockFinal3 = 0;
+    let totalStockFinal4 = 0;
+
+    for (let i = 0; i < stockInitialElements.length; i++) {
+        let stockInitial = parseFloat(stockInitialElements[i].value) || 0;
+        let entry = parseFloat(entryElements[i].value) || 0;
+        let sales = parseFloat(salesElements[i].value) || 0;
+
+        let stockFinal = stockInitial + entry - sales;
+        stockFinalElements[i].value = stockFinal;
+
+        // Calcul des Stock Final Total pour chaque paire de produits
+        if (i === 0 || i === 1) {
+            totalStockFinal1 += stockFinal;  // Super Sans Plomb & Super Sans Plomb Premium
+        }
+        if (i === 2 || i === 3) {
+            totalStockFinal2 += stockFinal;  // Gasoil Ordinaire & Gasoil International
+        }
+        if (i === 4 || i === 5) {
+            totalStockFinal3 += stockFinal;  // Gasoil Sans Soufre & Gasoil Sans Soufre Premium
+        }
+        if (i === 6) {
+            totalStockFinal4 += stockFinal;  // Fuel Lourds
+        }
+    }
+
+    // Mise à jour des champs de Stock Final Total
+    document.querySelector('.stock-final.total-stock-final-1').value = totalStockFinal1;
+    document.querySelector('.stock-final.total-stock-final-2').value = totalStockFinal2;
+    document.querySelector('.stock-final.total-stock-final-3').value = totalStockFinal3;
+    document.querySelector('.stock-final.total-stock-final-4').value = totalStockFinal4;
+}
+
+// Add event listeners to trigger calculation on input changes
+let inputs = document.querySelectorAll('input');
+inputs.forEach(input => {
+    input.addEventListener('input', calculateStockFinal);
+});
+
+// Initial calculation when the page loads
+calculateStockFinal();
+// Fonction d'impression
+function printDocument() {
+    window.print();
+}
+
+// Ajouter l'événement click au bouton d'impression
+document.querySelector('.print-button').addEventListener('click', printDocument)
+</script>
+
+</body>
+</html>

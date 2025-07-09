@@ -1,0 +1,131 @@
+/* styles.css */
+
+body {
+    font-family: 'Roboto', sans-serif; /* Police plus moderne et professionnelle */
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9; /* Couleur de fond plus douce */
+    color: #333; /* Texte par défaut */
+}
+
+/* Bande bleue en haut avec logo et titre */
+.header-bar {
+    background-color: #090379; /* Bleu foncé SNDP Agil */
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo img {
+    height: 50px;
+    margin-right: 20px;
+}
+.title {
+    font-size: 26px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-left: 20px; /* Ajout d'un espacement par rapport au bord gauche */
+    flex-grow: 1; /* Permet au titre de prendre tout l'espace disponible */
+    text-align: left; /* Aligne le texte à gauche */
+}
+/* Conteneur principal */
+.container {
+    margin: 20px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 28px;
+    color: #004085;
+    margin-bottom: 20px;
+}
+
+/* Filtres */
+.filters {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#product-filter {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+    font-size: 14px;
+}
+
+th {
+    background-color: #0056b3; /* Bleu SNDP Agil */
+    color: white;
+    text-transform: uppercase;
+}
+
+td {
+    background-color: #f9f9f9;
+}
+
+td input {
+    width: 90%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Dates spécifiques */
+.due-date {
+    background-color: #ffdddd; /* Rouge clair */
+}
+
+.reclamation-date {
+    background-color: #fff4cc; /* Jaune clair */
+}
+
+/* Boutons */
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff; /* Bleu bouton standard */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #060693; /* Survol */
+    transform: translateY(-2px);
+}
+
+button:active {
+    background-color: #060693; /* Actif */
+    transform: translateY(0);
+}
+
+/* Bouton danger */
+button.danger {
+    background-color: #dc3545; /* Rouge pour actions sensibles */
+}
+
+button.danger:hover {
+    background-color: #a71d2a;
+}

@@ -1,0 +1,136 @@
+/* Style global */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f9fc;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Bande bleue avec logo et titre */
+.header-bar {
+    background-color: #0056b3;
+    color: white;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-bar .logo img {
+    height: 70px; /* Taille de l'image ajustée */
+}
+
+.header-bar .title {
+    font-size: 1.8em;
+    margin: 0;
+    font-weight: bold;
+}
+
+/* Conteneur principal */
+.main-container {
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: auto;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Titre du formulaire */
+h2 {
+    font-size: 2em;
+    color: #0056b3;
+    text-align:center;
+    margin-bottom: 30px;
+}
+
+/* Formulaire */
+form {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Deux colonnes égales pour les labels et les champs */
+    gap: 20px;
+    width: 100%;
+}
+
+/* Colonne pour les labels */
+.form-label {
+    font-size: 1em;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+/* Champs de saisie (input, select) */
+.form-control, .form-select {
+    font-size: 1em;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #0056b3;
+    outline: none;
+}
+
+/* Colonnes responsive */
+@media (max-width: 768px) {
+    form {
+        grid-template-columns: 1fr; /* Sur petits écrans, une seule colonne */
+    }
+
+    .header-bar .title {
+        font-size: 1.5em;
+    }
+}
+
+/* Boutons */
+button {
+    padding: 12px 20px;
+    font-size: 1em;
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #003f7f;
+}
+
+/* Champs pour "Prix unitaire", "Poids", etc. */
+.col-md-3, .col-md-4, .col-md-6 {
+    flex: 1;
+    min-width: 250px;
+}
+
+/* Ajouter de l'espace entre les lignes */
+.mb-3 {
+    margin-bottom: 20px;
+}
+
+/* Responsivité : ajustement pour mobile */
+@media (max-width: 768px) {
+    .main-container {
+        padding: 20px;
+    }
+
+    .row {
+        flex-direction: column;
+    }
+
+    .col-md-3, .col-md-4, .col-md-6 {
+        width: 100%;
+    }
+
+    .header-bar .title {
+        font-size: 1.5em;
+    }
+}

@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>État de Stock Physique</title>
+  <style>
+    
+/* Bande bleue en haut avec logo et titre */
+.header-bar {
+    background-color: #0056b3;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.logo img {
+    height: 50px;
+    margin-right: 15px;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+}
+    :root {
+      --font-family: "Roboto", Arial, sans-serif;
+      --font-size-normal: 13px;
+      --header-bg-color: #004c97;
+      --header-text-color: #ffffff;
+      --row-hover-color: #cfe2f3;
+      --border-color: #b4c6e7;
+      --cell-padding: 10px;
+      --header-font-weight: 600;
+      --row-zebra-color: #f5f8fc;
+      --table-bg-color: #ffffff;
+      --focus-color: #003366;
+      --footer-bg-color: #e0f7fa;
+      --input-bg-color: #f7f7f7;
+      --input-focus-bg-color: #ffffff;
+      --input-border-color: #b4c6e7;
+      --input-border-focus-color: #005f99;
+      --input-text-color: #333;
+      --input-text-color-focus: #005f99;
+      --input-padding: 8px;
+    }
+
+    body {
+      font-family: var(--font-family);
+      margin: 0;
+      padding: 0;
+      background-color: var(--table-bg-color);
+    }
+
+    .container {
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 16px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 6px;
+      background-color: var(--table-bg-color);
+      overflow-x: auto;
+    }
+
+    h1 {
+      font-size: 18px;
+      margin-bottom: 16px;
+      text-align: left;
+      font-weight: bold;
+      color: var(--focus-color);
+    }
+    .correction-cell {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .correction-cell input {
+      width: 100%;
+      padding: px;
+      border: 1px solid #b4c6e7;
+      border-radius: 6px;
+      font-size: 13px;
+      background-color: #f7f7f7;
+      color: #333;
+    }
+
+
+
+    .correction-cell .negative {
+      margin-top: 5px;
+    }
+
+    .correction-cell input:focus {
+      border-color: #005f99;
+      background-color: #ffffff;} 
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: auto;
+      background-color: var(--table-bg-color);
+    }
+
+    th, td {
+      border: 1px solid var(--border-color);
+      padding: var(--cell-padding);
+      text-align: left;
+      font-size: var(--font-size-normal);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    th {
+      background-color: var(--header-bg-color);
+      font-weight: var(--header-font-weight);
+      color: var(--header-text-color);
+      border-bottom: 2px solid var(--border-color);
+    }
+
+    tr:nth-child(even) {
+      background-color: var(--row-zebra-color);
+    }
+
+    tr:hover {
+      background-color: var(--row-hover-color);
+    }
+
+    td input {
+      width: 100%;
+      padding: 2px;
+      border: 1px solid var(--input-border-color);
+      border-radius: 6px;
+      font-size: var(--font-size-normal);
+      background-color: var(--input-bg-color);
+      color: var(--input-text-color);
+      transition: all 0.3s ease;
+    }
+
+    td input:focus {
+      border-color: var(--input-border-focus-color);
+      background-color: var(--input-focus-bg-color);
+      color: var(--input-text-color-focus);
+      outline: none;
+    }
+
+    td select {
+      width: 100%;
+      border: 1px solid var(--input-border-color);
+      padding: var(--input-padding);
+      border-radius: 6px;
+      background-color: var(--input-bg-color);
+      font-size: var(--font-size-normal);
+      color: var(--input-text-color);
+      transition: all 0.3s ease;
+    }
+
+    td select:focus {
+      border-color: var(--input-border-focus-color);
+      background-color: var(--input-focus-bg-color);
+      color: var(--input-text-color-focus);
+      outline: none;
+    }
+
+    .footer {
+      background-color: var(--footer-bg-color);
+      padding: 10px;
+      color: #072780;
+      font-weight: bold;
+      border-top: 2px solid var(--border-color);
+    }
+
+    .footer td {
+      text-align: center;
+      border: 1px solid var(--border-color);
+      background-color: #ffffff;
+    }
+
+    .empty-row td {
+      background-color: #f1f3f4;
+      height: 40px; /* Lignes vides avec une certaine hauteur */
+    }
+
+    ::-webkit-scrollbar {
+      height: 10px;
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background-color: #f1f3f4;
+    }
+
+    /* Ajustement pour les lignes de tableau */
+    .product-table td,
+    .product-table th {
+      border: 1px solid var(--border-color);
+      padding: 8px;
+    }
+
+    /* Style pour les boutons d'action */
+    .action-btn {
+      background-color: #3665f4;
+      color: white;
+      border: none;
+      padding: 10px;
+      text-align: center;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 5px;
+      margin: 10px 0;
+    }
+
+    .action-btn.cancel {
+      background-color: #3665f4;
+    }
+
+    .action-btn:hover {
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+    <!-- Bande bleue avec logo et titre -->
+    <div class="header-bar">
+        <div class="logo">
+            <img src="logo_agil.png" alt="Logo de la société">
+        </div>
+        <div class="title"> État de Stock</div>
+    </div>
+  <div class="container">
+    
+    <table>
+      <thead>
+        <tr>
+          <th>N.BAC</th>
+          <th>HAUTEUR</th>
+          <th>VOLUME TOTALE</th>
+          <th> Correction </th>
+          <th>VOLUME AMBIANT NET</th>
+          <th>TEMPERATURE DE BAC</th>
+          <th>Coefficient </th>
+          <th>DENSITE</th>
+          
+        </tr>
+      </thead>
+      <tbody class="product-table">
+        <!-- Section S.S.P -->
+        <tr class="footer">
+          <td colspan="7">S.S.P</td>
+        </tr>
+        <tr>
+            <td><select>
+              <option value="T9A">T9A</option>
+              <option value="T9B">T9B</option>
+              <option value="T7B">T7B</option>
+              <option value="T1A">T1A</option>
+              <option value="T1B">T1B</option>
+              <option value="T10A">T10A</option>
+              <option value="T6B">T6B</option>
+              <option value="T18A">T18A</option>
+              <option value="T18B">T18B</option>
+            </select></td>
+            <td><input type="text" placeholder=""></td>
+            <td><input type="text" placeholder=""></td>
+            <td class="correction-cell">
+                <div class="positive">
+                  <input type="number" placeholder="+" />
+                </div>
+                <div class="negative">
+                  <input type="number" placeholder="-" />
+                </div>
+              </td>
+            <td><input type="text" placeholder=""></td>
+            <td><input type="text" placeholder=""></td>
+            <td><input type="text" placeholder=""></td>
+            <td><input type="text" placeholder=""></td>
+          </tr>
+          <tr>
+            <td><select>
+              <option value="T9A">T9A</option>
+              <option value="T9B">T9B</option>
+              <option value="T7B">T7B</option>
+              <option value="T1A">T1A</option>
+              <option value="T1B">T1B</option>
+              <option value="T10A">T10A</option>
+              <option value="T6B">T6B</option>
+              <option value="T18A">T18A</option>
+              <option value="T18B">T18B</option>
+            </select></td>
+            <td><input type="text" placeholder=""></td>
+            <td><input type="text" placeholder=""></td>
+            <td class="correction-cell">
+                <div class="positive">
+                  <input type="number" placeholder="+" />
+                </div>
+                <div class="negative">
+                  <input type="number" placeholder="-" />
+                </div>
+              </td>
+            <td><input type="text" placeholder=""></td>
+            <td><input type="text" placeholder=""></td>
+            <td><input type="text" placeholder=""></td>
+            <td><input type="text" placeholder=""></td>
+          </tr>
+         
+        <!-- Total pour S.S.P -->
+        <tr>
+          <td><strong>Total S.S.P</strong>
+
+        </td>
+          <td colspan="6">  <input type="text" placeholder=""></td>
+          
+        </tr>
+
+        <!-- Section Gazoil -->
+        <tr class="footer">
+          <td colspan="7">GAZOIL</td>
+        </tr>
+        <tr>
+            <td><select>
+              <option value="T9A">T9A</option>
+              <option value="T9B">T9B</option>
+              <option value="T7B">T7B</option>
+              <option value="T1A">T1A</option>
+              <option value="T1B">T1B</option>
+              <option value="T10A">T10A</option>
+              <option value="T6B">T6B</option>
+              <option value="T18A">T18A</option>
+              <option value="T18B">T18B</option>
+            </select></td>
+            <td><input type="text" placeholder=""></td>
+            <td><input type="text" placeholder=""></td>
+            <td class="correction-cell">
+                <div class="positive">
+                  <input type="number" placeholder="+" />
+                </div>
+                <div class="negative">
+                  <input type="number" placeholder="-" />
+                </div>
+              </td>            <td><input type="text" placeholder=""></td>
+            <td><input type="text" placeholder=""></td>
+            <td><input type="text" placeholder=""></td>
+            <td><input type="text" placeholder=""></td>
+          </tr>
+         
+        <!-- Total pour Gazoil -->
+        <tr>
+          <td><strong>Total Gazoil</strong></td>
+          <td colspan="6">  <input type="text" placeholder=""></td>
+        </tr>
+        <tr class="footer">
+            <td colspan="7">G.S.S</td>
+          </tr>
+          <tr>
+        <tr>
+            <td><select>
+              <option value="T9A">T9A</option>
+              <option value="T9B">T9B</option>
+              <option value="T7B">T7B</option>
+              <option value="T1A">T1A</option>
+              <option value="T1B">T1B</option>
+              <option value="T10A">T10A</option>
+              <option value="T6B">T6B</option>
+              <option value="T18A">T18A</option>
+              <option value="T18B">T18B</option>
+            </select></td>
+            <td><input type="text" placeholder=""></td>
+            <td><input type="text" placeholder=""></td>
+            <td class="correction-cell">
+                <div class="positive">
+                  <input type="number" placeholder="+" />
+                </div>
+                <div class="negative">
+                  <input type="number" placeholder="-" />
+                </div>
+              </td>
+            <td><input type="text" placeholder=""></td>
+            <td><input type="text" placeholder=""></td>
+            <td><input type="text" placeholder=""></td>
+            <td><input type="text" placeholder=""></td>
+          </tr>
+          <tr>
+            <td><select>
+              <option value="T9A">T9A</option>
+              <option value="T9B">T9B</option>
+              <option value="T7B">T7B</option>
+              <option value="T1A">T1A</option>
+              <option value="T1B">T1B</option>
+              <option value="T10A">T10A</option>
+              <option value="T6B">T6B</option>
+              <option value="T18A">T18A</option>
+              <option value="T18B">T18B</option>
+            </select></td>
+            <td><input type="text" placeholder=""></td>
+            <td><input type="text" placeholder=""></td>
+            <td class="correction-cell">
+                <div class="positive">
+                  <input type="number" placeholder="+" />
+                </div>
+                <div class="negative">
+                  <input type="number" placeholder="-" />
+                </div>
+              </td>
+            <td><input type="text" placeholder=""></td>
+            <td><input type="text" placeholder=""></td>
+            <td><input type="text" placeholder=""></td>
+            <td><input type="text" placeholder=""></td>
+          </tr>
+         
+
+        <!-- Section F.O.L -->
+        <tr class="footer">
+          <td colspan="7">F.O.L</td>
+        </tr>
+        <tr>
+            <td><select>
+              <option value="T9A">T9A</option>
+              <option value="T9B">T9B</option>
+              <option value="T7B">T7B</option>
+              <option value="T1A">T1A</option>
+              <option value="T1B">T1B</option>
+              <option value="T10A">T10A</option>
+              <option value="T6B">T6B</option>
+              <option value="T18A">T18A</option>
+              <option value="T18B">T18B</option>
+            </select></td>
+            <td><input type="text" placeholder=""></td>
+            <td><input type="text" placeholder=""></td>
+            <td class="correction-cell">
+                <div class="positive">
+                  <input type="number" placeholder="+" />
+                </div>
+                <div class="negative">
+                  <input type="number" placeholder="-" />
+                </div>
+              </td>
+            <td><input type="text" placeholder=""></td>
+            <td><input type="text" placeholder=""></td>
+            <td><input type="text" placeholder=""></td>
+            <td><input type="text" placeholder=""></td>
+          </tr>
+         
+        <!-- Total pour F.O.L -->
+        <tr>
+          <td><strong>Total F.O.L</strong></td>
+          <td colspan="6">  <input type="text" placeholder=""></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Tableau supplémentaire pour Stock Physique, Stock Comptable, Coulage/Bonus -->
+    <table style="margin-top: 20px;">
+      <thead>
+        <tr>
+          <th>Produit</th>
+          <th>Stock Physique</th>
+          <th>Stock Comptable</th>
+          <th>Coulage/Bonus</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>S.S.P</td>
+          <td><input type="number"></td>
+          <td><input type="number"></td>
+          <td><input type="number"></td>
+        </tr>
+        <tr>
+          <td>GAZOIL</td>
+          <td><input type="number"></td>
+          <td><input type="number"></td>
+          <td><input type="number"></td>
+        </tr>
+        <tr>
+          <td>G.S.S</td>
+          <td><input type="number"></td>
+          <td><input type="number"></td>
+          <td><input type="number"></td>
+        </tr>
+        <tr>
+          <td>F.O.L</td>
+          <td><input type="number"></td>
+          <td><input type="number"></td>
+          <td><input type="number"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Boutons d'action -->
+    <button class="action-btn" onclick="addRow()">Ajouter Ligne</button>
+    <button class="action-btn cancel" onclick="cancelAction()">Annuler</button>
+  </div>
+
+  <script>
+    function addRow() {
+      const table = document.querySelector('.product-table');
+      const newRow = table.insertRow();
+      for (let i = 0; i < 7; i++) {
+        let newCell = newRow.insertCell();
+        if (i === 0) {
+          const select = document.createElement('select');
+          select.innerHTML = `<option value="T9A">T9A</option>`;
+          newCell.appendChild(select);
+        } else {
+          const input = document.createElement('input');
+          input.type = 'number';
+          newCell.appendChild(input);
+        }
+      }
+    }
+
+    function cancelAction() {
+      const table = document.querySelector('.product-table');
+      if (table.rows.length > 0) {
+        table.deleteRow(table.rows.length - 1);
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traitement  des Commandes</title>
+    <style>
+        /* Style global */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f9fc;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Pour que le body occupe toute la hauteur */
+        }
+
+        /* Bande bleue en haut de la page */
+        .header-bar {
+            background-color: #0056b3; /* Bleu SNDP */
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+        }
+
+        .header-bar .logo img {
+            height: 80px;
+            max-width: 200px;
+            margin-right: 20px;
+        }
+
+        .header-bar .title {
+            font-size: 2em;
+            font-weight: bold;
+            margin: 0;
+            color: white;
+        }
+
+        /* Conteneur principal */
+        .container {
+            text-align: center;
+            padding: 50px 20px;
+            flex-grow: 1; /* Prendre toute la place restante */
+        }
+
+        /* Titre principal centré */
+        h1 {
+            font-size: 2.5em;
+            color: #0056b3;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+ /* Grille des options (centrée avec espace égal) */
+.options-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Deux colonnes avec même largeur */
+    gap: 0.5px; /* Espacement égal entre les cases */
+    justify-items: center; /* Centrer les cartes */
+    align-items: center; /* Centrer les cartes verticalement */
+    margin-top: 40px;
+    padding: 0 20px;
+}
+
+/* Cartes des options */
+.option-card {
+    background: linear-gradient(to bottom, #f7b731, #f5d569);
+    color: #0056b3;
+    border-radius: 10px;
+    padding: 40px 20px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Assure que les éléments dans la carte sont centrés */
+    height: 250px; /* Hauteur fixe pour garder les cartes égales */
+    width: 250px; /* Largeur fixe pour les cartes */
+}
+
+
+        .option-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Titres des cartes */
+        .option-card h3 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+
+        /* Texte des cartes */
+        .option-card p {
+            font-size: 1em;
+            margin-bottom: 30px;
+        }
+
+        /* Style des boutons d'accès */
+        button {
+            background-color: #0056b3; /* Fond bleu SNDP */
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            display: inline-block;
+            text-align: center;
+        }
+
+        button:hover {
+            background-color: #003f7f;
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(1px);
+        }
+
+        /* Pied de page */
+        .footer {
+            background-color: #0056b3;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+            width: 100%;
+            box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
+            margin-top: auto; /* Pour que le footer soit toujours en bas */
+        }
+
+        .footer p {
+            margin: 0;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="header-bar">
+        <div class="logo">
+            <img src="logo_agil.png" alt="Logo de la société">
+        </div>
+        <div class="title">Traitement  des Commandes</div>
+    </div>
+    <div class="container">
+        <h1>Choisissez le type de commande à gérer :</h1>
+        <div class="options-container">
+            <div class="option-card">
+                <h3>Commandes de Fuel</h3>
+                <p>Gérer les commandes de fuel pour vos clients.</p>
+                <button onclick="navigateTo('fuel')">Voir Commandes</button>
+            </div>
+            <div class="option-card">
+                <h3>Commandes de Carburants</h3>
+                <p>Gérer les commandes de carburants pour vos clients.</p>
+                <button onclick="navigateTo('carburant')">Voir Commandes</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        function navigateTo(type) {
+            if (type === 'fuel') {
+                window.location.href = 'Commandes de Fuel.html'; // Page pour commandes de fuel
+            } else if (type === 'carburant') {
+                window.location.href = 'Commandes de Carburants.html'; // Page pour commandes de carburants
+            }
+        }
+    </script>
+    <div class="footer">
+        <p>&copy; 2025 SNDP. Tous droits réservés.</p>
+    </div>
+</body>
+</html>

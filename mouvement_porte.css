@@ -1,0 +1,96 @@
+/* Bande supérieure */
+.header-bar {
+    background-color: #0056b3; /* Bleu foncé SNDP */
+    padding: 15px 20px;
+    color: white;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header-bar .logo img {
+    height: 80px; /* Ajuster la taille du logo */
+    width: auto;
+    margin-right: 15px;
+}
+
+.header-bar .title {
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Contenu principal */
+.main-container {
+    max-width: 1200px;
+    margin: 10px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    color: #0056b3;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+/* Conteneur de formulaire */
+.form-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px;
+    margin-bottom: 20px;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 4px;
+}
+
+input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #333;
+}
+
+input[type="text"], input[type="date"], input[type="time"] {
+    width: 90%;
+}
+
+/* Boutons */
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+button {
+    padding: 12px 20px;
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button[type="reset"] {
+    background-color: #0056b3;
+}
+
+button:hover {
+    opacity: 0.9;
+}

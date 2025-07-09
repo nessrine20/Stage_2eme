@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Droits de Taxes</title>
+    <link rel="stylesheet" href="style-droit-taxe.css"> <!-- Assurez-vous que le bon fichier CSS est lié -->
+</head>
+<body>
+    <div class="container">
+        <div class="header-bar">
+            <div class="logo">
+                <img src="logo_agil.png" alt="Agil Logo">
+            </div>
+            <div class="title">SNDP</div>
+        </div>
+        <div class="header">
+            <h2>DEPOT SKHIRA</h2>
+            <p class="date" id="current-date"></p> <!-- Élément pour afficher la date -->
+        </div>
+
+        <main>
+            <h2>DROITS DE TAXES</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Produit</th>
+                        <th>%</th>
+                        <th>VOLUME</th>
+                        <th>DROITS ET TAXES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>SSP</td>
+                        <td><input type="number" class="percentage" placeholder="Pourcentage" oninput="calculateTaxes()" step="0.00001"></td>
+                        <td><input type="number" class="volume" placeholder="Volume" oninput="calculateTaxes()" step="0.00001"></td>
+                        <td><input type="text" class="taxes" readonly></td>
+                    </tr>
+                    <tr>
+                        <td>GASOIL</td>
+                        <td><input type="number" class="percentage" placeholder="Pourcentage" oninput="calculateTaxes()" step="0.00001"></td>
+                        <td><input type="number" class="volume" placeholder="Volume" oninput="calculateTaxes()" step="0.00001"></td>
+                        <td><input type="text" class="taxes" readonly></td>
+                    </tr>
+                    <tr>
+                        <td>GASOIL SANS SOUFRE</td>
+                        <td><input type="number" class="percentage" placeholder="Pourcentage" oninput="calculateTaxes()" step="0.00001"></td>
+                        <td><input type="number" class="volume" placeholder="Volume" oninput="calculateTaxes()" step="0.00001"></td>
+                        <td><input type="text" class="taxes" readonly></td>
+                    </tr>
+                    <tr>
+                        <td>FOL</td>
+                        <td><input type="number" class="percentage" placeholder="Pourcentage" oninput="calculateTaxes()" step="0.00001"></td>
+                        <td><input type="number" class="volume" placeholder="Volume" oninput="calculateTaxes()" step="0.00001"></td>
+                        <td><input type="text" class="taxes" readonly></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="text-align: right; font-weight: bold;">TOTAL</td>
+                        <td><input type="text" id="total-taxes" readonly></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button class="print-button" onclick="window.print()">Imprimer</button>
+        </main>
+    </div>
+
+    <script>
+        // Fonction pour générer la date actuelle
+        function generateCurrentDate() {
+            const date = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            const formattedDate = date.toLocaleDateString('fr-FR', options);
+            document.getElementById('current-date').textContent = `SKHIRA, LE ${formattedDate}`;
+        }
+
+        function calculateTaxes() {
+            const rows = document.querySelectorAll('tbody tr');
+            let totalTaxes = 0;
+
+            rows.forEach(row => {
+                const percentageInput = row.querySelector('.percentage');
+                const volumeInput = row.querySelector('.volume');
+                const taxesInput = row.querySelector('.taxes');
+
+                // Remplacer la virgule par un point pour le parsing
+                const percentage = parseFloat(percentageInput.value.replace(',', '.')) || 0 ;const volume = parseFloat(volumeInput.value.replace(',', '.')) || 0; // Calculer les taxes
+                const taxes = (percentage / 100) * volume;
+
+                // Afficher le résultat avec 5 décimales
+                taxesInput.value = taxes.toFixed(5); // Afficher le résultat avec 5 décimales
+
+                // Accumuler le total des taxes
+                totalTaxes += taxes;
+            });
+
+            // Afficher le total avec 5 décimales
+            document.getElementById('total-taxes').value = totalTaxes.toFixed(5); // Afficher le total
+        }
+
+        // Appeler la fonction pour générer la date au chargement de la page
+        window.onload = generateCurrentDate;
+    </script>
+</body>
+</html>

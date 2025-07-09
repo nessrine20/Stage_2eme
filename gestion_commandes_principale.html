@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Principale - Gestion des Commandes</title>
+    <link rel="stylesheet" href="gestion_commandes_principale.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Bande bleue avec logo et titre -->
+    <div class="header-bar">
+        <div class="logo">
+            <img src="logo_agil.png" alt="Logo de la société">
+        </div>
+        <div class="title">Page Principale - Gestion des Commandes</div>
+    </div>
+
+    <!-- Formulaire principal -->
+    <div class="main-container">
+        <h2>Gestion de la Commande</h2>
+        <form id="orderForm" action="" method="POST">
+            <div class="row">
+                <!-- Code de dépôt et référence de commande -->
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="codeDepot" class="form-label">Code de Dépôt</label>
+                        <input type="text" class="form-control" id="codeDepot" placeholder="Code de dépôt">
+                    </div>
+                    <div class="mb-3">
+                        <label for="refCommande" class="form-label">Référence de Commande</label>
+                        <input type="text" class="form-control" id="refCommande" placeholder="Référence de commande">
+                    </div>
+                </div>
+                <!-- Numéro de compte et sous-compte -->
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="numCompte" class="form-label">Numéro de Compte</label>
+                        <input type="text" class="form-control" id="numCompte" placeholder="Numéro de compte">
+                    </div>
+                    <div class="mb-3">
+                        <label for="numSousCompte" class="form-label">Numéro de Sous-compte</label>
+                        <input type="text" class="form-control" id="numSousCompte" placeholder="Numéro de sous-compte">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Date et type de commande -->
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="dateCommande" class="form-label">Date de Commande</label>
+                        <input type="date" class="form-control" id="dateCommande">
+                    </div>
+                    <div class="mb-3">
+                        <label for="typeCommande" class="form-label">Type de Commande</label>
+                        <select class="form-select" id="typeCommande">
+                            <option value="carburants">Carburants</option>
+                            <option value="petroles">Pétroles</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Mode de paiement et référence de commande -->
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="modePaiement" class="form-label">Mode de Paiement</label>
+                        <select class="form-select" id="modePaiement">
+                            <option value="espece">Espèce</option>
+                            <option value="cheque">Chèque</option>
+                            <option value="virement">Virement</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="refDateCommande" class="form-label">Référence et Date de Commande</label>
+                        <input type="text" class="form-control" id="refDateCommande" placeholder="Référence et date de commande">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Client et date de livraison -->
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="client" class="form-label">Client</label>
+                        <input type="text" class="form-control" id="client" placeholder="Nom du client">
+                    </div>
+                    <div class="mb-3">
+                        <label for="dateLivraison" class="form-label">Date de Livraison</label>
+                        <input type="date" class="form-control" id="dateLivraison">
+                    </div>
+                </div>
+                <!-- Point de chute et code libellé -->
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="pointChute" class="form-label">Point de Chute</label>
+                        <input type="text" class="form-control" id="pointChute" placeholder="Point de chute">
+                    </div>
+                    <div class="mb-3">
+                        <label for="codeLibelle" class="form-label">Code et Libellé</label>
+                        <input type="text" class="form-control" id="codeLibelle" placeholder="Code et libellé">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Produit, unité, quantité commandée, prix unitaire -->
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label for="produit" class="form-label">Produit</label>
+                        <input type="text" class="form-control" id="produit" placeholder="Produit">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label for="unite" class="form-label">Unité</label>
+                        <input type="text" class="form-control" id="unite" placeholder="Unité">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label for="quantiteCommande" class="form-label">Quantité Commandée</label>
+                        <input type="number" class="form-control" id="quantiteCommande" placeholder="Quantité commandée" min="1">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Prix unitaire, poids, douane, stocks -->
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label for="prixUnitaire" class="form-label">Prix Unitaire</label>
+                        <input type="number" class="form-control" id="prixUnitaire" placeholder="Prix unitaire">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label for="poids" class="form-label">Poids</label>
+                        <input type="number" class="form-control" id="poids" placeholder="Poids">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label for="douane" class="form-label">Douane</label>
+                        <input type="number" class="form-control" id="douane" placeholder="Douane">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label for="stocks" class="form-label">Stocks</label>
+                        <input type="number" class="form-control" id="stocks" placeholder="Stocks">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Totale commandée et poids des produits -->
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="totaleCommandee" class="form-label">Totale Commandée</label>
+                        <input type="number" class="form-control" id="totaleCommandee" placeholder="Totale commandée">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="poidsProduits" class="form-label">Poids des Produits</label>
+                        <input type="number" class="form-control" id="poidsProduits" placeholder="Poids des produits">
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <button type="submit" class="btn btn-success">Enregistrer Commande</button>
+            </div>
+        </form>
+    </div>
+
+    <button onclick="window.location.href='validation_feuilles_routes_carburant.html'">Accéder à la validation</button>
+
+    <!-- Scripts Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+         function generateOrderId() {
+            return 'ORD-' + new Date().getTime();
+        }
+
+      
+
+            // Récupération des valeurs du formulaire
+            const codeDepot = document.get
+        document.addEventListener('DOMContentLoaded', function () {
+    // Récupère l'ID de la commande depuis l'URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const orderId = urlParams.get('orderId'); // Récupère l'ID de la commande
+
+    if (orderId !== null) {
+        // Récupère les données de la commande depuis le localStorage
+        const orderData = JSON.parse(localStorage.getItem('ordersList'))[orderId];
+
+        if (orderData) {
+            // Remplir les champs du formulaire avec les données de la commande
+            document.getElementById('codeDepot').value = orderData.numeroCommande;  // Exemple de champ
+            document.getElementById('refCommande').value = orderData.numeroCommande;
+            document.getElementById('client').value = orderData.client;
+            document.getElementById('produit').value = orderData.produit;
+            document.getElementById('quantiteCommande').value = orderData.quantite;
+            document.getElementById('dateCommande').value = orderData.date;
+            // Continue avec les autres champs comme nécessaire
+        }
+    }
+});
+
+        
+
+document.getElementById('orderForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const codeDepot = document.getElementById('codeDepot').value;
+            const refCommande = document.getElementById('refCommande').value;
+            const client = document.getElementById('client').value;
+            const produit = document.getElementById('produit').value;
+
+            // Créer un objet commande
+            const newOrder = {
+                codeDepot,
+                refCommande,
+                client,
+                produit,
+            };
+
+            // Récupérer la liste existante des commandes depuis le localStorage, ou créer une liste vide
+            let ordersList = JSON.parse(localStorage.getItem('ordersList')) || [];
+
+            // Ajouter la nouvelle commande à la liste
+            ordersList.push(newOrder);
+
+            // Sauvegarder la liste mise à jour dans le localStorage
+            localStorage.setItem('ordersList', JSON.stringify(ordersList));
+
+            
+        });
+        document.getElementById('orderForm').addEventListener('submit', function (e) {
+    e.preventDefault(); // Empêche l'envoi du formulaire par défaut
+
+    const codeDepot = document.getElementById('codeDepot').value;
+    const refCommande = document.getElementById('refCommande').value;
+    const client = document.getElementById('client').value;
+    const produit = document.getElementById('produit').value;
+
+    // Créer un objet de la commande
+    const newOrder = {
+        codeDepot,
+        refCommande,
+        client,
+        produit,
+    };
+
+    // Récupérer la liste des commandes existantes (si elle existe)
+    let ordersList = JSON.parse(localStorage.getItem('ordersList')) || [];
+
+    // Ajouter la nouvelle commande à la liste
+    ordersList.push(newOrder);
+
+    // Sauvegarder la liste mise à jour dans le localStorage
+    localStorage.setItem('ordersList', JSON.stringify(ordersList));
+
+   
+});
+
+    </script>
+</body>

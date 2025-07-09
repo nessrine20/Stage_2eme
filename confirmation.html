@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Commandes - Bon de Chargement</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-5">
+    <div id="form-container">
+        <h2>Gestion de la Commande</h2>
+        <form id="orderForm">
+            <div class="mb-3">
+                <label for="numeroCommande" class="form-label">Numéro de Commande</label>
+                <input type="text" class="form-control" id="numeroCommande" placeholder="Numéro de commande">
+            </div>
+
+            <div class="mb-3">
+                <label for="client" class="form-label">Client</label>
+                <input type="text" class="form-control" id="client" placeholder="Nom du client">
+            </div>
+
+            <div class="mb-3">
+                <label for="produit" class="form-label">Produit</label>
+                <input type="text" class="form-control" id="produit" placeholder="Produit">
+            </div>
+
+            <div class="mb-3">
+                <label for="quantiteCommande" class="form-label">Quantité Commandée</label>
+                <input type="number" class="form-control" id="quantiteCommande" placeholder="Quantité commandée" min="1">
+            </div>
+
+            <div class="mb-3">
+                <label for="dateCommande" class="form-label">Date de Commande</label>
+                <input type="date" class="form-control" id="dateCommande">
+            </div>
+
+            <button type="submit" class="btn btn-success">Enregistrer Commande</button>
+        </form>
+    </div>
+
+    <!-- Section de confirmation (initialement masquée) -->
+    <div id="confirmation-container" style="display: none;">
+        <h2>Bon de Chargement</h2>
+        <div id="invoice-details"></div>
+        <div class="mt-3">
+            <button id="print-btn" class="btn btn-primary">Imprimer</button>
+            <button id="back-btn" class="btn btn-secondary">Retour à la Gestion des Commandes</button>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    // Gestion du formulaire
+    document.getElementById('orderForm').addEventListener('submit', function (e) {
+        e.preventDefault(); // Empêche l'envoi du formulaire
+
+        // Récupérer les données du formulaire
+        const selectedOrder = {
+            numeroCommande: document.getElementById('numeroCommande').value,
+            client: document.getElementById('client').value,
+            produit: document.getElementById('produit').value,
+            quantite: document.getElementById('quantiteCommande').value,
+            date: document.getElementById('dateCommande').value,
+        };
+
+        // Sauvegarder la commande dans le localStorage
+        localStorage.setItem('selectedOrder', JSON.stringify(selectedOrder));
+
+        // Afficher la section de confirmation et masquer le formulaire
+        document.getElementById('form-container').style.display = 'none';
+        document.getElementById('confirmation-container').style.display = 'block';
+
+        // Afficher les détails de la commande dans la section de confirmation
+        const invoiceDetails = `
+            <p><strong>Numéro de Commande:</strong> ${selectedOrder.numeroCommande}</p>
+            <p><strong>Client:</strong> ${selectedOrder.client}</p>
+            <p><strong>Produit:</strong> ${selectedOrder.produit}</p>
+            <p><strong>Quantité:</strong> ${selectedOrder.quantite}</p>
+            <p><strong>Date de Commande:</strong> ${selectedOrder.date}</p>
+        `;
+        document.getElementById('invoice-details').innerHTML = invoiceDetails;
+    });
+
+    // Fonction pour imprimer le bon de chargement
+    document.getElementById('print-btn').addEventListener('click', function() {
+        window.print();
+    });
+
+    // Retourner à la page de gestion des commandes
+    document.getElementById('back-btn').addEventListener('click', function() {
+        // Réinitialiser le formulaire et revenir à l'état initial
+        document.getElementById('form-container').style.display = 'block';
+        document.getElementById('confirmation-container').style.display = 'none';
+        document.getElementById('orderForm').reset();
+    });
+</script>
+
+</body>
+</html>

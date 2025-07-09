@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page de Douane</title>
+    <link rel="stylesheet" href="style.css"> <!-- Lien vers le fichier CSS -->
+    <style>
+        /* Style global */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f9fc;
+            color: #333;
+        }
+
+        /* Bande bleue en haut de la page */
+        .header-bar {
+            background-color: #0056b3;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start; /* Aligner à gauche */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-bar .logo img {
+            height: 80px; /* Augmenter la hauteur de l'image */
+            max-width: 200px; /* Taille maximale pour garantir une bonne proportion */
+            margin-right: 20px; /* Espacement entre le logo et le texte */
+        }
+
+        .header-bar .title {
+            font-size: 2em; /* Plus grand texte */
+            font-weight: bold;
+            margin: 0;
+            color: white; /* Texte en blanc */
+        }
+
+        /* Conteneur principal */
+        .mouvement-porte-container {
+            text-align: center;
+            padding: 50px 20px; /* Plus d'espace pour centrer */
+        }
+
+        /* Titre principal centré */
+        .title {
+            font-size: 2.5em;
+            color: #0056b3;
+            margin-bottom: 20px;
+        }
+
+        /* Sous-titre */
+        .subtitle {
+            font-size: 1.2em;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        /* Grille des options */
+        .mouvement-porte-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Trois colonnes fixes */
+            gap: 30px; /* Espace entre les colonnes */
+            margin-top: 40px;
+            padding: 0 20px;
+        }
+
+        /* Cartes des options (agrandies pour occuper l'espace) */
+        .option-card {
+            background: linear-gradient(to bottom, #f7b731, #f5d569);
+            color: #0056b3;
+            border-radius: 10px;
+            padding: 40px 20px; /* Plus d'espace interne */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .option-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Titres des cartes */
+        .option-card h3 {
+            font-size: 1.8em; /* Plus grand titre */
+            margin-bottom: 15px;
+        }
+
+        /* Texte des cartes */
+        .option-card p {
+            font-size: 1em;
+            margin-bottom: 20px;
+        }
+
+        /* Style des boutons d'accès */
+        button {
+            background-color: #0056b3; /* Fond bleu professionnel */
+            color: #fff; /* Texte blanc */
+            padding: 12px 25px; /* Taille confortable */
+            border-radius: 8px; /* Coins arrondis */
+            font-size: 1.1em;
+            font-weight: bold;
+            border: none; /* Supprimer les bordures par défaut */
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            display: inline-block;
+            text-align: center;
+            margin-top: 20px; /* Espacement au-dessus des boutons */
+        }
+
+        /* Effet au survol */
+        button:hover {
+            background-color: #003f7f; /* Couleur plus foncée au survol */
+            transform: translateY(-2px); /* Légère élévation du bouton */
+        }
+
+        /* Effet de clic */
+        button:active {
+            transform: translateY(1px); /* Enfoncement au clic */
+        }
+
+        /* Pied de page */
+        .footer {
+            background-color: #0056b3;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer p {
+            margin: 0;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="header-bar">
+        <div class="logo">
+            <img src="logo_agil.png" alt="Logo Douane">
+        </div>
+        <div class="title">DOUANE</div>
+    </div>
+
+    <div class="mouvement-porte-container">
+        <h1 class="title">Bienvenue à la Page de Douane</h1>
+        <p class="subtitle">Sélectionnez une option ci-dessous pour continuer</p>
+
+        <div class="mouvement-porte-options">
+            <div class="option-card">
+                <h3>État de Stock des BACS</h3>
+                <button onclick="window.location.href='État de Stock des BACS.html'">Accéder</button>
+            </div>
+            <div class="option-card">
+                <h3>Droits de Taxes</h3>
+                <button onclick="window.location.href='Droits de Taxes.html'">Accéder</button>
+            </div>
+            <div class="option-card">
+                <h3>État de Stock Physique</h3>
+                <button onclick="window.location.href='État de Stock Physique.html'">Accéder</button>
+            </div>
+            <div class="option-card">
+                <h3>FICHE DE VALEUR</h3>
+                <button onclick="window.location.href='FICHE DE VALEUR.html'">Accéder</button>
+            </div>
+            <div class="option-card">
+                <h3>Mouvement des Produits</h3>
+                <button onclick="window.location.href='Mouvement des Produits.html'">Accéder</button>
+            </div>
+            <div class="option-card">
+                <h3>Feuille de Jaugeage</h3>
+                <button onclick="window.location.href='Feuille de Jaugeage.html'">Accéder</button>
+            </div>
+            <div class="option-card">
+                <h3>ETAT DES SOMMIERS</h3>
+                <button onclick="window.location.href='ETAT DES SOMMIERS.html'">Accéder</button>
+            </div>
+            <div class="option-card">
+                <h3>DECADE</h3>
+                <button onclick="window.location.href='DECADE.html'">Accéder</button>
+            </div>
+            <div class="option-card">
+                <h3>Réception Transfert</h3>
+                <button onclick="window.location.href='Réception Transfert Gasoil.html'">Accéder</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2025 Douane. Tous droits réservés.</p>
+    </div>
+</body>
+</html>

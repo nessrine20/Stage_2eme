@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commandes Enregistrées</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-4">
+        <h2>Commandes Enregistrées</h2>
+        <input type="search" id="search-input" class="form-control mb-3" placeholder="Rechercher par client ou date">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Numéro de Commande</th>
+                    <th>Client</th>
+                    <th>Date</th>
+                    <th>Produit</th>
+                    <th>Quantité</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="ordersTableBody"></tbody>
+        </table>
+    </div>
+
+    <script>
+        const ordersList = JSON.parse(localStorage.getItem('ordersList')) || [];
+        const tableBody = document.getElementById('ordersTableBody');
+
+        function renderTable(orders) {
+            tableBody.innerHTML = '';
+            orders.forEach(order => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${order.numeroCommande}</td>
+                    <td>${order.client}</td>
+                    <td>${order.date}</td>
+                    <td>${order.produit}</td>
+                    <td>${order.quantite}</td>
+                    <td><button class="btn btn-danger btn-sm">Supprimer</button></td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        renderTable(ordersList);
+
+        document.getElementById('search-input').addEventListener('input', function (e) {
+            const searchQuery = e.target.value.toLowerCase();
+            const filteredOrders = ordersList.filter(order =>
+                order.client.toLowerCase().includes(searchQuery) || order.date.includes(searchQuery)
+            );
+            renderTable(filteredOrders);
+        });
+    </script>
+</body>
+</html>

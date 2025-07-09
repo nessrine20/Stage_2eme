@@ -1,0 +1,153 @@
+/* Style global */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f7fc;
+    color: #333;
+}
+
+/* Bande bleue avec logo et titre */
+.header-bar {
+    background-color: #0056b3;
+    color: #fff;
+    padding: 20px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-bar .logo img {
+    height: 80px;
+}
+
+.header-bar .title {
+    font-size: 2.2em;
+    font-weight: 600;
+    justify-content: flex-start; /* Aligner le contenu à gauche */
+    margin-left: 20px;
+}
+
+/* Contenu principal */
+.main-container {
+    padding: 30px 50px;
+    background-color: #fff;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Titre de la section */
+h2 {
+    font-size: 1.8em;
+    color: #0056b3;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #0056b3;
+    padding-bottom: 10px;
+}
+
+/* Grille des formulaires */
+.form-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Deux colonnes égales */
+    gap: 20px; /* Espacement entre les colonnes */
+    margin-bottom: 30px;
+}
+
+/* Style des labels et champs */
+.form-row {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-row label {
+    font-size: 1.1em;
+    color: #333;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.form-row input {
+    padding: 12px;
+    font-size: 1.1em;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background-color: #f9f9f9;
+    box-sizing: border-box;
+}
+
+/* Focus des champs */
+.form-row input:focus {
+    border-color: #0056b3;
+    outline: none;
+    background-color: #fff;
+}
+
+/* Conteneur des boutons avec espacement ajusté */
+.button-container {
+    display: flex;
+    justify-content: space-between; /* Espace entre les boutons */
+    margin-top: 40px;
+    gap: 40px; /* Ajoute un espace de 40px entre les boutons */
+}
+
+/* Style général pour les boutons */
+button {
+    background-color: #007bff; /* Couleur bleue élégante */
+    color: white; /* Texte en blanc */
+    font-size: 16px; /* Taille de police professionnelle */
+    padding: 12px 30px; /* Padding ample pour un bouton plus grand */
+    border: none; /* Enlever les bordures par défaut */
+    border-radius: 8px; /* Coins arrondis pour une finition douce */
+    cursor: pointer; /* Pointeur de souris pour indiquer que c'est cliquable */
+    transition: background-color 0.3s, transform 0.2s; /* Animation lors du survol */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre légère pour un effet de profondeur */
+}
+
+/* Style pour le survol des boutons */
+button:hover {
+    background-color: #0056b3; /* Couleur bleue foncée lors du survol */
+    transform: translateY(-2px); /* Légère élévation du bouton */
+}
+
+/* Style pour le focus (quand le bouton est sélectionné) */
+button:focus {
+    outline: none; /* Retirer le contour par défaut */
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5); /* Ajouter un halo bleu */
+}
+
+/* Style spécifique pour le bouton "Imprimer la Feuille" */
+#imprimerFeuille {
+    background-color: #28a745; /* Vert pour l'impression */
+}
+
+/* Changement de couleur au survol du bouton "Imprimer la Feuille" */
+#imprimerFeuille:hover {
+    background-color: #218838; /* Vert foncé pour l'impression au survol */
+}
+
+/* Style spécifique pour le bouton "Retour à la Gestion" */
+#retourGestion {
+    background-color: #022a69; /* Jaune pour le retour à la gestion */
+}
+
+/* Changement de couleur au survol du bouton "Retour à la Gestion" */
+#retourGestion:hover {
+    background-color: #022a69; /* Jaune foncé au survol */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .form-container {
+        grid-template-columns: 1fr; /* Une seule colonne sur mobile */
+    }
+
+    .form-row input {
+        width: 100%;
+    }
+
+    .button-container {
+        justify-content: center;
+        gap: 20px; /* Moins d'espace entre les boutons sur mobile */
+    }
+}

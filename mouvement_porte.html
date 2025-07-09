@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouvement de la Porte (Entrée / Sortie)</title>
+    <link rel="stylesheet" href="mouvement_porte.css">
+</head>
+<body>
+
+    <!-- Bande bleue avec logo et titre -->
+    <div class="header-bar">
+        <div class="logo">
+            <img src="logo_agil.png" alt="Logo de la société">
+        </div>
+        <div class="title">Mouvement de la Porte (Entrée / Sortie)</div>
+    </div>
+
+    <!-- Contenu principal -->
+    <div class="main-container">
+        <h2>Détails du Mouvement</h2>
+
+        <!-- Formulaire de mouvement -->
+        <div class="form-container">
+            <div class="form-row">
+                <label for="date">Date</label>
+                <input type="date" id="date" name="date" required>
+            </div>
+            <div class="form-row">
+                <label for="heure">Heure</label>
+                <input type="time" id="heure" name="heure" required>
+            </div>
+            <div class="form-row">
+                <label for="transporteur">Transporteur</label>
+                <input type="text" id="transporteur" name="transporteur" required>
+            </div>
+            <div class="form-row">
+                <label for="numero_ordre_transport">Numéro Ordre de Transport</label>
+                <input type="text" id="numero_ordre_transport" name="numero_ordre_transport" required>
+            </div>
+            <div class="form-row">
+                <label for="immatriculation">Immatriculation</label>
+                <input type="text" id="immatriculation" name="immatriculation" required>
+            </div>
+            <div class="form-row">
+                <label for="numero_citerne">Numéro de Citerne</label>
+                <input type="text" id="numero_citerne" name="numero_citerne" required>
+            </div>
+            <div class="form-row">
+                <label for="numero_cin_chauffeur">Numéro CIN du Chauffeur</label>
+                <input type="text" id="numero_cin_chauffeur" name="numero_cin_chauffeur" required>
+            </div>
+            <div class="form-row">
+                <label for="nom_chauffeur">Nom du Chauffeur</label>
+                <input type="text" id="nom_chauffeur" name="nom_chauffeur" required>
+            </div>
+        </div>
+
+        <!-- Boutons -->
+        <div class="button-container">
+            <button type="submit">Enregistrer Mouvement</button>
+            <button type="reset">Annuler</button>
+        </div>
+    </div>
+
+    <script>
+        // Event listener for the "Enregistrer Mouvement" button
+        document.querySelector('button[type="submit"]').addEventListener('click', function(event) {
+            // Optionally handle form submission here
+            alert("Mouvement enregistré !");
+        });
+    </script>
+
+</body>
+</html>

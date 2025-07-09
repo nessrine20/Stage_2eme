@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNDP SKHIRA - 1° DECADE JANVIER 2025</title>
+    <style>
+        :root {
+            --border-color: #333;
+            --header-bg: #f8f9fa;
+            --total-bg: #eef2f7;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            color: #333;
+        }
+                /* Bande bleue en haut avec logo et titre */
+.header-bar {
+    background-color: #0056b3;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.logo img {
+    height: 50px;
+    margin-right: 15px;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 1.2rem;
+            margin: 0;
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 8px;
+            text-align: right;
+        }
+
+        th {
+            background-color: var(--header-bg);
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .product-col {
+            text-align: left;
+            font-weight: bold;
+            width: 120px;
+        }
+
+        .total-row {
+            background-color: var(--total-bg);
+            font-weight: bold;
+        }
+
+        .summary-section {
+            margin-top: 30px;
+            border-top: 2px solid var(--border-color);
+        }
+
+        .summary-section td:first-child {
+            padding-left: 20px;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+        /* Style des boutons */
+        .button-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px; /* Espacement entre les boutons */
+        }
+
+        .button-container button {
+            padding: 12px 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        /* Bouton Imprimer */
+        .button-container #printButton {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .button-container #printButton:hover {
+            background-color: #218838;
+            transform: scale(1.05); /* Légère augmentation de la taille au survol */
+        }
+
+        /* Bouton Supprimer */
+        .button-container #deleteButton {
+            background-color: #218838;
+            color: white;
+        }
+
+        .button-container #deleteButton:hover {
+            background-color: #c82333;
+            transform: scale(1.05); /* Légère augmentation de la taille au survol */
+        }
+
+        /* Masquer les boutons */
+        .invisible {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Bande bleue avec logo et titre -->
+    <div class="header-bar">
+        <div class="logo">
+            <img src="logo_agil.png" alt="Logo de la société">
+        </div>
+        <div class="title" id="decadeTitle">Décade - 1ère Décennie</div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>SNDP SKHIRA</h1>
+            
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th rowspan="2">PRODUIT</th>
+                    <th>BACS</th>
+                    <th>H.T.</th>
+                    <th>VOL.APP.</th>
+                    <th>TEM</th>
+                    <th>Pté à 15</th>
+                    <th>K</th>
+                    <th>VOL à 15</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- S.S.P Section -->
+                <tr>
+                    <td rowspan="3" class="product-col">S.S.P</td>
+                    <td>T9A</td>
+                    <td><input type="number" id="htT9A"></td>
+                    <td><input type="number" id="volAppT9A"></td>
+                    <td><input type="number" id="temT9A"></td>
+                    <td><input type="number" id="pte15T9A"></td>
+                    <td><input type="number" id="kT9A"></td>
+                    <td><input type="number" id="vol15T9A" readonly></td>
+                </tr>
+                <tr>
+                    <td>T9B</td>
+                    <td><input type="number" id="htT9B"></td>
+                    <td><input type="number" id="volAppT9B"></td>
+                    <td><input type="number" id="temT9B"></td>
+                    <td><input type="number" id="pte15T9B"></td>
+                    <td><input type="number" id="kT9B"></td>
+                    <td><input type="number" id="vol15T9B" readonly></td>
+                </tr>
+                <tr>
+                    <td>T7B</td>
+                    <td><input type="number" id="htT7B"></td>
+                    <td><input type="number" id="volAppT7B"></td>
+                    <td><input type="number" id="temT7B"></td>
+                    <td><input type="number" id="pte15T7B"></td>
+                    <td><input type="number" id="kT7B"></td>
+                    <td><input type="number" id="vol15T7B" readonly></td>
+                </tr>
+                <tr class="total-row">
+                    <td colspan="7" style="text-align: right">Total S.S.P</td>
+                    <td><input type="number" id="totalVol15SSP" readonly></td>
+                </tr>
+
+                <!-- GASOIL Section -->
+                <tr>
+                    <td rowspan="2" class="product-col">GASOIL</td>
+                    <td>T1A</td>
+                    <td><input type="number" id="htT1A"></td>
+                    <td><input type="number" id="volAppT1A"></td>
+                    <td><input type="number" id="temT1A"></td>
+                    <td><input type="number" id="pte15T1A"></td>
+                    <td><input type="number" id="kT1A"></td>
+                    <td><input type="number" id="vol15T1A" readonly></td>
+                </tr>
+                <tr>
+                    <td>T1B</td>
+                    <td><input type="number" id="htT1B"></td>
+                    <td><input type="number" id="volAppT1B"></td>
+                    <td><input type="number" id="temT1B"></td>
+                    <td><input type="number" id="pte15T1B"></td>
+                    <td><input type="number" id="kT1B"></td>
+                    <td><input type="number" id="vol15T1B" readonly></td>
+                </tr>
+                <tr>
+                    <td rowspan="2" class="product-col">GASOIL 50</td>
+                    <td>T10A</td>
+                    <td><input type="number" id="htT1A"></td>
+                    <td><input type="number" id="volAppT1A"></td>
+                    <td><input type="number" id="temT1A"></td>
+                    <td><input type="number" id="pte15T1A"></td>
+                    <td><input type="number" id="kT1A"></td>
+                    <td><input type="number" id="vol15T1A" readonly></td>
+                </tr>
+                <tr>
+                    <td>T8B</td>
+                    <td><input type="number" id="htT1B"></td>
+                    <td><input type="number" id="volAppT1B"></td>
+                    <td><input type="number" id="temT1B"></td>
+                    <td><input type="number" id="pte15T1B"></td>
+                    <td><input type="number" id="kT1B"></td>
+                    <td><input type="number" id="vol15T1B" readonly></td>
+                </tr>
+                <tr>
+                    <td rowspan="2" class="product-col">F.O.L</td>
+                    <td>T8A</td>
+                    <td><input type="number" id="htT1A"></td>
+                    <td><input type="number" id="volAppT1A"></td>
+                    <td><input type="number" id="temT1A"></td>
+                    <td><input type="number" id="pte15T1A"></td>
+                    <td><input type="number" id="kT1A"></td>
+                    <td><input type="number" id="vol15T1A" readonly></td>
+                </tr>
+                <tr>
+                    <td>T18B</td>
+                    <td><input type="number" id="htT1B"></td>
+                    <td><input type="number" id="volAppT1B"></td>
+                    <td><input type="number" id="temT1B"></td>
+                    <td><input type="number" id="pte15T1B"></td>
+                    <td><input type="number" id="kT1B"></td>
+                    <td><input type="number" id="vol15T1B" readonly></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Summary Section -->
+        <table class="summary-section">
+            <tr>
+                <td rowspan="7" class="product-col">N.B</td>
+               
+                <td rowspan="2">S.S.P</td>
+                <td>S.S.P</td>
+                <td><input type="text"></td>
+                <td rowspan="2"><input type="text"></td>
+            </tr>
+            <tr>
+                <td>S.S.P PREMIUM</td>
+                <td ><input type="text"></td>
+                
+            </tr>
+            <tr>
+                <td rowspan="2">GASOIL</td>
+                <td>GASOIL</td>
+                <td ><input type="text"></td>
+                <td rowspan="2"><input type="text"></td>
+                               </tr>
+            <tr>
+                <td>GASOIL SOUTE</td>
+                <td ><input type="text"></td>
+            </tr>
+            <tr>
+                <td rowspan="2">G.S.S</td>
+                <td>G.S.S</td>
+                <td ><input type="text"></td>
+                <td rowspan="2"><input type="text"></td>
+            </tr>
+            <tr>
+                <td>G.S.S PREMIUM</td>
+                <td ><input type="text"></td>
+            </tr>
+            <tr>
+                <td colspan="2">F.O.L</td>
+                <td ><input type="text"></td>
+                <td ><input type="text"></td>
+            </tr>
+        </table>
+    </div>
+<!-- Boutons Imprimer et Supprimer -->
+<div class="button-container">
+    <button id="printButton" onclick="printPage()">Imprimer</button>
+    <button id="deleteButton" onclick="deleteContent()">Supprimer</button>
+</div>
+        <script>
+            // Fonction pour déterminer la décennie actuelle
+        function getCurrentDecade() {
+            const today = new Date();
+            const dayOfMonth = today.getDate();
+
+            if (dayOfMonth <= 10) {
+                return "1ère Décennie";
+            } else if (dayOfMonth <= 20) {
+                return "2ème Décennie";
+            } else {
+                return "3ème Décennie";
+            }
+        }
+
+        // Mettre à jour le titre en fonction de la décennie
+        const decadeTitle = document.getElementById('decadeTitle');
+        decadeTitle.textContent = `Décade - ${getCurrentDecade()}`;
+            function calculateVol15() {
+                // S.S.P T9A
+                const volAppT9A = parseFloat(document.getElementById("volAppT9A").value) || 0;
+                const kT9A = parseFloat(document.getElementById("kT9A").value) || 0;
+                const vol15T9A = volAppT9A * kT9A;
+                document.getElementById("vol15T9A").value = vol15T9A.toFixed(2);
+
+                // S.S.P T9B
+                const volAppT9B = parseFloat(document.getElementById("volAppT9B").value) || 0;
+                const kT9B = parseFloat(document.getElementById("kT9B").value) || 0;
+                const vol15T9B = volAppT9B * kT9B;
+                document.getElementById("vol15T9B").value = vol15T9B.toFixed(2);
+
+                // S.S.P T7B
+                const volAppT7B = parseFloat(document.getElementById("volAppT7B").value) || 0;
+                const kT7B = parseFloat(document.getElementById("kT7B").value) || 0;
+                const vol15T7B = volAppT7B * kT7B;
+                document.getElementById("vol15T7B").value = vol15T7B.toFixed(2);
+
+                // Total S.S.P
+                const totalVol15SSP = vol15T9A + vol15T9B + vol15T7B;
+                document.getElementById("totalVol15SSP").value = totalVol15SSP.toFixed(2);
+
+                // GASOIL T1A
+                const volAppT1A = parseFloat(document.getElementById("volAppT1A").value) || 0;
+                const kT1A = parseFloat(document.getElementById("kT1A").value) || 0;
+                const vol15T1A = volAppT1A * kT1A;
+                document.getElementById("vol15T1A").value = vol15T1A.toFixed(2);
+
+                // GASOIL T1B
+                const volAppT1B = parseFloat(document.getElementById("volAppT1B").value) || 0;
+                const kT1B = parseFloat(document.getElementById("kT1B").value) || 0;
+                const vol15T1B = volAppT1B * kT1B;
+                document.getElementById("vol15T1B").value = vol15T1B.toFixed(2);
+
+                // Total GASOIL
+                const totalVol15Gasoil = vol15T1A + vol15T1B;
+                document.getElementById("totalVolGasoil").value = totalVol15Gasoil.toFixed(2);
+            }
+
+            // Add event listeners to trigger calculation
+            const inputs = document.querySelectorAll("input[type='number']");
+            inputs.forEach(input => {
+                input.addEventListener("input", calculateVol15);
+            });
+             // Fonction pour imprimer la page
+        function printPage() {
+            // Masquer les boutons après l'impression
+            document.getElementById('printButton').classList.add('invisible');
+            document.getElementById('deleteButton').classList.add('invisible');
+
+            // Lancer l'impression de la page
+            window.print();
+        }
+
+        // Fonction pour supprimer le contenu (exemple)
+        function deleteContent() {
+            alert("Le contenu a été supprimé !");
+            // Ici vous pouvez ajouter des fonctionnalités pour supprimer du contenu si nécessaire.
+        }
+        </script>
+    </div>
+</body>
+</html>

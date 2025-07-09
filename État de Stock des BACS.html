@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>État de Stock des BACS</title>
+    <link rel="stylesheet" href="style_Bac.css">
+</head>
+<body>
+    <!-- Bande bleue avec logo et titre -->
+    <div class="header-bar">
+        <div class="logo">
+            <img src="logo_agil.png" alt="Logo de la société">
+        </div>
+        <div class="title">État de Stock des BACS</div>
+    </div>
+
+    <div class="container">
+
+        <!-- Filtres pour produits -->
+        <div class="filters">
+            <label for="product-filter">Filtrer par produit : </label>
+            <select id="product-filter">
+                <option value="tous">Tous</option>
+                <option value="GAZOIL">GAZOIL</option>
+                <option value="S.S.P">S.S.P</option>
+                <option value="F.O.L">F.O.L</option>
+                <option value="G.S.S">G.S.S</option>
+            </select>
+        </div>
+
+        <!-- Boutons d'action -->
+        <div class="actions">
+            <button id="add-row">Ajouter une ligne</button>
+        </div>
+
+        <!-- Tableau des BACS -->
+        <table id="bac-table">
+            <thead>
+                <tr>
+                    <th>N°BAC</th>
+                    <th>ÉCHEANCE</th>
+                    <th>DATE RÉCLAMATION</th>
+                    <th>VOLUME CORRESPONDANT</th>
+                    <th>VOLUME TOTALE</th>
+                    <th>STOCK PH BAC</th>
+                    <th>STOCK PH TOTALE</th>
+                    <th>CREUX BAC</th>
+                    <th>CREUX TOTALE</th>
+                    <th>Dernière mise à jour</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="bac-table-body">
+                <!-- Les lignes seront générées par JavaScript -->
+            </tbody>
+        </table>
+
+        <!-- Notifications -->
+        <div id="notification" style="display: none;"></div>
+    </div>
+
+    <script>
+        // Initialiser les données des BACS
+        const bacs = [
+            { n_bac: "T9A", echeance: "2025-06-10", date_reclamation: "2025-01-10", volume_corr: 2850000, volume_totale: 11926000, stock_ph_bac: 2540524, stock_ph_totale: 8099697, creux_bac: 309476, creux_totale: 3826303, produit: "S.S.P", last_updated: "2025-01-27" },
+            { n_bac: "T9B", echeance: "2025-11-19", date_reclamation: "2025-09-16", volume_corr: 2850000, volume_totale: 11926000, stock_ph_bac: 1909646, stock_ph_totale: 8099697, creux_bac: 940354, creux_totale: 3826303, produit: "S.S.P", last_updated: "2025-01-27" },
+            { n_bac: "T7B", echeance: "2025-10-05", date_reclamation: "2025-05-05", volume_corr: 6226000, volume_totale: 11926000, stock_ph_bac: 3649527, stock_ph_totale: 8099697, creux_bac: 2576473, creux_totale: 3826303, produit: "S.S.P", last_updated: "2025-01-27" },
+            { n_bac: "T1A", echeance: "2027-01-08", date_reclamation: "2026-06-23", volume_corr: 28886000, volume_totale: 57784000, stock_ph_bac: 13338687, stock_ph_totale: 15290198, creux_bac: 15547313, creux_totale: 42493802, produit: "GAZOIL", last_updated: "2025-01-27" },
+            { n_bac: "T1B", echeance: "2027-11-09", date_reclamation: "2026-05-10", volume_corr: 28886000, volume_totale: 57784000, stock_ph_bac: 1951511, stock_ph_totale: 15290198, creux_bac: 26946489, creux_totale: 42493802, produit: "GAZOIL", last_updated: "2025-01-27" },
+            { n_bac: "T10A", echeance: "2028-04-22", date_reclamation: "2027-11-22", volume_corr: 278686, volume_totale: 10104686, stock_ph_bac: 271645, stock_ph_totale: 4061583, creux_bac: 7041, creux_totale: 6043103, produit: "G.S.S", last_updated: "2025-01-27" },
+            { n_bac: "T6B", echeance: "2026-09-20", date_reclamation: "2026-04-20", volume_corr: 9826000, volume_totale: 10104686, stock_ph_bac: 3789938, stock_ph_totale: 4061583, creux_bac: 6036062, creux_totale: 6043103, produit: "G.S.S", last_updated: "2025-01-27" },
+            { n_bac: "T18A", echeance: "2031-12-02", date_reclamation: "2031-07-02", volume_corr: 12381000, volume_totale: 24764000, stock_ph_bac: 659576, stock_ph_totale: 1640304, creux_bac: 11721424, creux_totale: 23123696, produit: "F.O.L", last_updated: "2025-01-27" },
+            { n_bac: "T18B", echeance: "2031-06-05", date_reclamation: "2031-01-05", volume_corr: 12383000, volume_totale: 24764000, stock_ph_bac: 980728, stock_ph_totale: 1640304, creux_bac: 11402272, creux_totale: 23123696, produit: "F.O.L", last_updated: "2025-01-27" },
+        ];
+
+        // Fonction pour obtenir la date actuelle
+        function getCurrentDate() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, "0");
+            const day = String(now.getDate()).padStart(2, "0");
+            return `${year}-${month}-${day}`;
+        }
+
+        // Fonction pour afficher les données dans le tableau
+        function renderTable(filter = "tous") {
+            const tableBody = document.getElementById("bac-table-body");
+            tableBody.innerHTML = ""; // Réinitialiser le tableau
+
+            bacs.filter(bac => filter === "tous" || bac.produit === filter)
+                .forEach(bac => {
+                    const row = document.createElement("tr");
+
+                    Object.entries(bac).forEach(([key, value]) => {
+                        if (key !== "produit") { // Ignorer le champ produit
+                            const cell = document.createElement("td");
+                            if (key === "last_updated") {
+                                cell.textContent = value; // Affichage de la date
+                            } else {
+                                const input = document.createElement("input");
+                                input.type = "text";
+                                input.value = value;
+                                input.setAttribute("data-field", key);
+                                input.addEventListener("blur", (e) => {
+                                    updateBac(bac.n_bac, key, e.target.value);
+                                });
+                                cell.appendChild(input);
+                            }
+                            row.appendChild(cell);
+                        }
+                    });
+
+                    // Ajouter une colonne d'action
+                    const actionCell = document.createElement("td");
+                    const deleteButton = document.createElement("button");
+                    deleteButton.textContent = "Supprimer";
+                    deleteButton.addEventListener("click", () => {
+                        if (confirm(`Supprimer le BAC ${bac.n_bac} ?`)) {
+                            deleteBac(bac.n_bac);
+                        }
+                    });
+                    actionCell.appendChild(deleteButton);
+                    row.appendChild(actionCell);
+
+                    tableBody.appendChild(row);
+                });
+        }
+
+        // Fonction pour mettre à jour un BAC
+        function updateBac(bacId, field, newValue) {
+            const bac = bacs.find(b => b.n_bac === bacId);
+            if (bac) {
+                bac[field] = isNaN(newValue) ? newValue : parseFloat(newValue); // Convertir les nombres
+                if (field !== "last_updated") {
+                    bac.last_updated = getCurrentDate(); // Mise à jour de la date
+                }
+                showNotification(`Le BAC ${bacId} a été mis à jour.`);
+                renderTable(document.getElementById("product-filter").value); // Rafraîchir la vue
+            }
+        }
+
+        // Fonction pour supprimer un BAC
+        function deleteBac(bacId) {
+            const index = bacs.findIndex(b => b.n_bac === bacId);
+            if (index !== -1) {
+                bacs.splice(index, 1);
+                showNotification(`Le BAC ${bacId} a été supprimé.`);
+                renderTable(document.getElementById("product-filter").value); // Rafraîchir la vue
+            }
+        }
+
+        // Fonction pour ajouter une ligne
+        document.getElementById("add-row").addEventListener("click", () => {
+            const filter = document.getElementById("product-filter").value;
+            if (filter === "tous") {
+                alert("Veuillez sélectionner un produit pour ajouter une ligne.");
+                return;
+            }
+
+            const newBac = {
+                n_bac: `BAC-${bacs.length + 1}`,
+                echeance: "",
+                date_reclamation: "",
+                volume_corr: "",
+                volume_totale: "",
+                stock_ph_bac: "",
+                stock_ph_totale: "",
+                creux_bac: "",
+                creux_totale: "",
+                produit: filter,
+                last_updated: getCurrentDate(),
+            };
+            bacs.push(newBac);
+            showNotification(`Un nouveau BAC pour le produit ${filter} a été ajouté.`);
+            renderTable(filter);
+        });
+
+        // Fonction pour afficher une notification
+        function showNotification(message) {
+            const notification = document.getElementById("notification");
+            notification.textContent = message;
+            notification.style.display = "block";
+            setTimeout(() => {
+                notification.style.display = "none";
+            }, 3000);
+        }
+
+        // Ajouter un événement pour le filtre
+        document.getElementById("product-filter").addEventListener("change", (e) => {
+            renderTable(e.target.value);
+        });
+        
+        deleteButton.addEventListener("click", () => {
+    const index = bacs.findIndex(b => b.n_bac === bac.n_bac);
+    if (index !== -1) {
+        bacs.splice(index, 1);
+        showNotification(`Le BAC ${bac.n_bac} a été supprimé.`);
+        renderTable(document.getElementById("product-filter").value); // Rafraîchir la vue
+    } else {
+        showNotification(`Le BAC ${bac.n_bac} n'a pas été trouvé.`, "error");
+    }
+});
+
+        // Initialiser le tableau
+        renderTable();
+    </script>
+
+</body>
+</html>

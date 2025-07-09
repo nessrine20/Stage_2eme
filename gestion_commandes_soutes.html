@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion de Commandes Soutes</title>
+    <link rel="stylesheet" href="gestion_commandes_soutes.css">
+</head>
+<body>
+
+    <!-- Bande bleue avec logo et titre -->
+    <div class="header-bar">
+        <div class="logo">
+            <img src="logo_agil.png" alt="Logo de la société">
+        </div>
+        <div class="title">Gestion de Commandes Soutes</div>
+    </div>
+
+    <!-- Contenu principal -->
+    <div class="main-container">
+        
+        <!-- Détails de la commande -->
+        <div class="form-section">
+            <h2>Détails de la Commande</h2>
+            <div class="form-container">
+                <div class="form-row">
+                    <label for="code_depot">Code Dépôt</label>
+                    <input type="text" id="code_depot" name="code_depot" oninput="updateLieu()" required>
+                </div>
+                <div class="form-row">
+                    <label for="lieu">Lieu</label>
+                    <input type="text" id="lieu" name="lieu" readonly>
+                </div>
+                <div class="form-row">
+                    <label for="numero_compte">Numéro de Compte</label>
+                    <input type="text" id="numero_compte" name="numero_compte" required>
+                </div>
+                <div class="form-row">
+                    <label for="reference_commande">Référence de Commande</label>
+                    <input type="text" id="reference_commande" name="reference_commande" required>
+                </div>
+                <div class="form-row">
+                    <label for="numero_sous_compte">Numéro de Sous Compte</label>
+                    <input type="text" id="numero_sous_compte" name="numero_sous_compte" required>
+                </div>
+                <div class="form-row">
+                    <label for="date_commande">Date de Commande</label>
+                    <input type="date" id="date_commande" name="date_commande" required>
+                </div>
+                <div class="form-row">
+                    <label for="type_commande">Type de Commande</label>
+                    <input type="text" id="type_commande" name="type_commande" required>
+                </div>
+                <div class="form-row">
+                    <label for="mode_paiement">Mode de Paiement</label>
+                    <input type="text" id="mode_paiement" name="mode_paiement" required>
+                </div>
+                <div class="form-row">
+                    <label for="client">Client</label>
+                    <input type="text" id="client" name="client" required>
+                </div>
+                <div class="form-row">
+                    <label for="type_soute">Type de Soute</label>
+                    <input type="text" id="type_soute" name="type_soute" required>
+                </div>
+                <div class="form-row">
+                    <label for="devise">Devise</label>
+                    <input type="text" id="devise" name="devise" required>
+                </div>
+                <div class="form-row">
+                    <label for="navire">Navire</label>
+                    <input type="text" id="navire" name="navire" required>
+                </div>
+                <div class="form-row">
+                    <label for="point_chute">Point de Chute</label>
+                    <input type="text" id="point_chute" name="point_chute" required>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tableau des produits -->
+        <div class="form-section">
+            <h2>Détails des Produits</h2>
+            <table id="produitsTable">
+                <thead>
+                    <tr>
+                        <th>Code & Libellé Produit</th>
+                        <th>Unité</th>
+                        <th>Quantité Commandée</th>
+                        <th>Code Douane</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Lignes du tableau seront ajoutées dynamiquement -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Boutons -->
+        <div class="button-container">
+            <button id="enregistrerCommande">Enregistrer Commande</button>
+            <button id="annulerCommande">Annuler</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            // Mise à jour automatique du lieu en fonction du code dépôt
+            function updateLieu() {
+                const codeDepot = document.getElementById("code_depot").value;
+                const lieuInput = document.getElementById("lieu");
+
+                // Exemple de logique pour affecter un lieu en fonction du code dépôt
+                if (codeDepot === "20") {
+                    lieuInput.value = "Skhira";
+                } else if (codeDepot === "30") {
+                    lieuInput.value = "Tunis";
+                } else {
+                    lieuInput.value = ""; // Vide si code inconnu
+                }
+            }
+
+            // Fonction pour gérer l'ajout de lignes dans le tableau des produits
+            function addProductRow() {
+                const tableBody = document.querySelector('#produitsTable tbody');
+                const newRow = tableBody.insertRow();
+                
+                newRow.innerHTML = `
+                    <td><input type="text" name="code_libelle_produit" required></td>
+                    <td><input type="text" name="unite" required></td>
+                    <td><input type="number" name="quantite_commande" required></td>
+                    <td><input type="text" name="code_douane" required></td>
+                `;
+            }
+
+            // Ajouter une ligne dès le chargement de la page (par exemple 5 lignes par défaut)
+            for (let i = 0; i < 5; i++) {
+                addProductRow();
+            }
+
+            // Redirection quand on clique sur le bouton "Enregistrer Commande"
+            document.getElementById('enregistrerCommande').addEventListener('click', function () {
+                // Rediriger vers la page de validation des feuilles de route
+                window.location.href = 'Validation de Feuille de Route - Commandes Soutes.html'; // Remplacez le chemin par le bon
+            });
+
+            // Fonction d'annulation (effacer tous les champs)
+            document.getElementById('annulerCommande').addEventListener('click', function () {
+                const form = document.querySelector('form');
+                form.reset(); // Réinitialise tous les champs du formulaire
+            });
+        });
+    </script>
+
+</body>
+</html>

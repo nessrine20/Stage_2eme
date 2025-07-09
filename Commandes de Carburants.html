@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylle.css">
+
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        .save-btn, .cancel-btn, button {
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #121bb5;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .save-btn:hover, .cancel-btn:hover, button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <!-- Bande bleue avec logo et titre -->
+    <div class="header-bar">
+        <div class="logo">
+            <img src="logo_agil.png" alt="Logo de la société">
+        </div>
+        <div class="title"> Commandes de Carburants  </div>
+    </div>
+    <!-- Barre de recherche -->
+    <div class="search-container">
+        <input type="text" id="searchBar" class="search-bar" placeholder="Rechercher par nom de client ou date...">
+    </div>
+
+    <div class="container">
+        
+        <table id="commandes-table">
+            <thead>
+                <tr>
+                    <th>Référence de Commande</th>
+                    <th>Client</th>
+                    <th>Compte Client</th>
+                    <th>Localité</th>
+                    <th>N B.C</th>
+                    <th>Produit</th>
+                    <th>Remarques</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Lignes vides initiales -->
+                <tr><td><input type="text" placeholder="Référence"></td><td><input type="text" placeholder="Client"></td><td><input type="text" placeholder="Compte Client"></td><td><input type="text" placeholder="Localité"></td><td><input type="text" placeholder="N B.C"></td><td><select><option value="gasoil">Gasoil</option><option value="essence">Essence</option><option value="gasoil50">Gasoil 50</option><option value="gasoil_sans_plomb">Gasoil Sans Plomb</option><option value="essence_sans_plomb">Essence Sans Plomb</option><option value="petrole">Pétrole</option><option value="jet">Jet</option></select></td><td><input type="text" placeholder="Remarques"></td></tr>
+                <tr><td><input type="text" placeholder="Référence"></td><td><input type="text" placeholder="Client"></td><td><input type="text" placeholder="Compte Client"></td><td><input type="text" placeholder="Localité"></td><td><input type="text" placeholder="N B.C"></td><td><select><option value="gasoil">Gasoil</option><option value="essence">Essence</option><option value="gasoil50">Gasoil 50</option><option value="gasoil_sans_plomb">Gasoil Sans Plomb</option><option value="essence_sans_plomb">Essence Sans Plomb</option><option value="petrole">Pétrole</option><option value="jet">Jet</option></select></td><td><input type="text" placeholder="Remarques"></td></tr>
+                <tr><td><input type="text" placeholder="Référence"></td><td><input type="text" placeholder="Client"></td><td><input type="text" placeholder="Compte Client"></td><td><input type="text" placeholder="Localité"></td><td><input type="text" placeholder="N B.C"></td><td><select><option value="gasoil">Gasoil</option><option value="essence">Essence</option><option value="gasoil50">Gasoil 50</option><option value="gasoil_sans_plomb">Gasoil Sans Plomb</option><option value="essence_sans_plomb">Essence Sans Plomb</option><option value="petrole">Pétrole</option><option value="jet">Jet</option></select></td><td><input type="text" placeholder="Remarques"></td></tr>
+            </tbody>
+        </table>
+
+        <!-- Boutons -->
+        <button class="save-btn" onclick="saveCommande()">Enregistrer la Commande</button>
+        <button class="cancel-btn" onclick="clearForm()">Annuler</button>
+    </div>
+
+    <script>
+        // Fonction pour vider tous les champs du tableau
+        function clearForm() {
+            // Sélectionner tous les champs de saisie (input et select)
+            const inputs = document.querySelectorAll('tbody input');
+            const selects = document.querySelectorAll('tbody select');
+
+            // Réinitialiser tous les champs
+            inputs.forEach(input => {
+                input.value = ''; // Vider chaque champ
+            });
+
+            selects.forEach(select => {
+                select.selectedIndex = 0; // Réinitialiser les sélecteurs
+            });
+        }
+
+        // Fonction pour sauvegarder la commande et rediriger vers le tableau de commandes
+        function saveCommande() {
+            // Vous pouvez ajouter ici la logique pour sauvegarder la commande, par exemple un envoi vers une base de données
+
+            // Redirection vers la page tableau de commande après l'enregistrement
+            window.location.href = 'gestion_commandes_principale.html'; // Remplacez par l'URL de votre page tableau de commande
+        }
+
+        // Fonction pour ajouter des lignes vides dynamiquement
+        function addEmptyRows(table, numberOfRows) {
+            for (let i = 0; i < numberOfRows; i++) {
+                const row = table.insertRow();
+                for (let j = 0; j < table.rows[0].cells.length; j++) {
+                    const cell = row.insertCell(j);
+                    if (j === 5) {  // Sélecteur de produit
+                        const select = document.createElement("select");
+                        const options = [
+                            {value: 'gasoil', text: 'Gasoil'},
+                            {value: 'essence', text: 'Essence'},
+                            {value: 'gasoil50', text: 'Gasoil 50'},
+                            {value: 'gasoil_sans_plomb', text: 'Gasoil Sans Plomb'},
+                            {value: 'essence_sans_plomb', text: 'Essence Sans Plomb'},
+                            {value: 'petrole', text: 'Pétrole'},
+                            {value: 'jet', text: 'Jet'}
+                        ];
+                        options.forEach(option => {
+                            const optionElement = document.createElement("option");
+                            optionElement.value = option.value;
+                            optionElement.textContent = option.text;
+                            select.appendChild(optionElement);
+                        });
+                        cell.appendChild(select);
+                    } else {
+                        const input = document.createElement("input");
+                        input.type = "text";
+                        input.placeholder = j === 0 ? "Référence" : j === 1 ? "Client" : j === 2 ? "Compte Client" : j === 3 ? "Localité" : j === 4 ? "N B.C" : "Remarques";
+                        cell.appendChild(input);
+                    }
+                }
+            }
+        }
+
+        const table = document.getElementById("commandes-table");
+        addEmptyRows(table, 10); // Ajoute 5 lignes vides à la table
+ // Filtrer les commandes en fonction de la recherche
+ document.getElementById('searchBar').addEventListener('input', () => {
+            const searchTerm = document.getElementById('searchBar').value.toLowerCase();
+
+            // Filtrer les commandes en fonction du nom ou de la date
+            const filteredOrders = commandes.filter(commande => {
+                return (
+                    commande.nom.toLowerCase().includes(searchTerm) ||
+                    commande.date.includes(searchTerm)
+                );
+            });
+
+            // Mettre à jour le tableau avec les commandes filtrées
+            updateTable(filteredOrders);
+        });
+
+        // Initialiser le tableau avec toutes les commandes
+        updateTable(commandes);
+    </script>
+</body>
+</html>

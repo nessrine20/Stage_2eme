@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validation de Feuille de Route</title>
+    <link rel="stylesheet" href="validation_feuilles_routes_carburant.css">
+</head>
+<body>
+
+    <!-- Bande bleue avec logo et titre -->
+    <div class="header-bar">
+        <div class="logo">
+            <img src="logo_agil.png" alt="Logo de la société">
+        </div>
+        <div class="title">Validation de Feuille de Route</div>
+    </div>
+
+    <!-- Contenu principal -->
+    <div class="main-container">
+        
+        <!-- Détails de la commande -->
+        <div class="form-section">
+            <h2>Détails de la Commande</h2>
+            <div class="form-container">
+                <div class="form-row">
+                    <label for="numero_commande">Numéro de Commande</label>
+                    <input type="text" id="numero_commande" name="numero_commande" required>
+                </div>
+                <div class="form-row">
+                    <label for="date">Date</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+                <div class="form-row">
+                    <label for="transporteur">Transporteur</label>
+                    <input type="text" id="transporteur" name="transporteur" required>
+                </div>
+                <div class="form-row">
+                    <label for="matricule_camion">Matricule du Camion</label>
+                    <input type="text" id="matricule_camion" name="matricule_camion" value="TU" required>
+                </div>
+                <div class="form-row">
+                    <label for="numero_citerne">Numéro de Citerne</label>
+                    <input type="text" id="numero_citerne" name="numero_citerne" required>
+                </div>
+            </div>
+        </div>
+
+        <!-- Détails du produit -->
+        <div class="form-section">
+            <h2>Détails du Produit</h2>
+            <div class="form-container">
+                <div class="form-row">
+                    <label for="cpt">CPT</label>
+                    <input type="text" id="cpt" name="cpt" required>
+                </div>
+                <div class="form-row">
+                    <label for="volume_produit">Volume de Produit</label>
+                    <input type="number" id="volume_produit" name="volume_produit" required>
+                </div>
+                <div class="form-row">
+                    <label for="produit">Produit (Code)</label>
+                    <input type="text" id="produit" name="produit" required>
+                </div>
+                <div class="form-row">
+                    <label for="ref_bl">Référence Bon BL/BLF</label>
+                    <input type="text" id="ref_bl" name="ref_bl" required>
+                </div>
+                <div class="form-row">
+                    <label for="client">Client</label>
+                    <input type="text" id="client" name="client" required>
+                </div>
+            </div>
+        </div>
+
+        <!-- Détails de livraison -->
+        <div class="form-section">
+            <h2>Détails de Livraison</h2>
+            <div class="form-container">
+                <div class="form-row">
+                    <label for="date_livraison">Date de Livraison</label>
+                    <input type="date" id="date_livraison" name="date_livraison" required>
+                </div>
+                <div class="form-row">
+                    <label for="point_chute">Point de Chute</label>
+                    <input type="text" id="point_chute" name="point_chute" required>
+                </div>
+                <div class="form-row">
+                    <label for="code_libelle">Code et Libellé</label>
+                    <input type="text" id="code_libelle" name="code_libelle" required>
+                </div>
+            </div>
+        </div>
+
+        <!-- Boutons -->
+        <div class="button-container">
+            <button id="imprimerFeuille">Imprimer la Feuille</button>
+            <button id="retourGestion">Retour à la Gestion des Commandes</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Récupérer la dernière commande enregistrée (si elle existe)
+            const ordersList = JSON.parse(localStorage.getItem('ordersList')) || [];
+
+            // Si des commandes existent, récupère la dernière commande
+            if (ordersList.length > 0) {
+                const lastOrder = ordersList[ordersList.length - 1]; // Dernière commande ajoutée
+
+                // Remplir les champs avec les données de la commande
+                document.getElementById('numero_commande').value = lastOrder.refCommande;
+                document.getElementById('date').value = lastOrder.date;
+                document.getElementById('client').value = lastOrder.client;
+                document.getElementById('produit').value = lastOrder.produit;
+                document.getElementById('volume_produit').value = lastOrder.volumeProduit;
+                document.getElementById('point_chute').value = lastOrder.pointChute;
+                document.getElementById('code_libelle').value = lastOrder.codeLibelle;
+            }
+
+            // Bouton d'impression
+            document.getElementById('imprimerFeuille').addEventListener('click', function () {
+                window.print(); // Imprime la page
+            });
+
+            // Bouton de retour à la page de gestion
+            document.getElementById('retourGestion').addEventListener('click', function () {
+                window.location.href = 'gestion_commandes_principale.html'; // Remplacer par le chemin de votre page
+            });
+        });
+    </script>
+
+</body>
+</html>

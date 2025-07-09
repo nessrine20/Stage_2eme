@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Lien vers le fichier CSS externe -->
+</head>
+<body>
+    <!-- Conteneur principal du login -->
+    <div class="login-container">
+        <!-- Logo -->
+        <div class="logo">
+            <img src="logo_agil.png" alt="Logo SNDP Agil">
+        </div>
+        <h1>Connexion</h1>
+
+        <!-- Formulaire de Connexion -->
+        <form id="loginForm">
+            <!-- Champ pour le nom d'utilisateur -->
+            <div class="form-group">
+                <label for="username">Nom d'utilisateur</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+
+            <!-- Champ pour le mot de passe -->
+            <div class="form-group">
+                <label for="password">Mot de passe</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+
+            <!-- Sélecteur de ville -->
+            <div class="form-group">
+                <label for="city">Unité (Ville)</label>
+                <select id="city" name="city" required>
+                    <option value="">Choisir une ville</option>
+                    <option value="Tunis">Tunis</option>
+                    <option value="Sousse">Sousse</option>
+                    <option value="Sfax">Sfax</option>
+                    <option value="Bizerte">Bizerte</option>
+                    <option value="Nabeul">Nabeul</option>
+                    <option value="Monastir">Monastir</option>
+                </select>
+            </div>
+
+            <!-- Bouton de connexion -->
+            <button type="submit" class="btn-login">Se connecter</button>
+        </form>
+    </div>
+
+    <!-- Script pour rediriger vers le dashboard -->
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(e) {
+            e.preventDefault(); // Empêche la soumission classique du formulaire
+            // Redirection vers la page dashboard.html
+            window.location.href = "./dashboard.html"; 
+
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encaissement des Produits</title>
+    <style>
+        /* Style global */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f9fc;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            min-height: 10vh;
+            padding-top: 50px;
+        }
+
+        /* Header bar SNDP avec logo à gauche */
+        .header-bar {
+            background-color: #0056b3;
+            color: white;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            font-size: 1.em;
+            font-weight: bold;
+            width: 100%;
+        }
+
+        .header-bar .logo {
+            height: 70px; /* Taille du logo */
+            margin-right: 20px; /* Espacement entre le logo et le titre */
+        }
+
+        .header-bar .title {
+            font-size: 1.8em;
+            margin: 0;
+        }
+
+        /* Style du container du formulaire */
+        .form-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* 2 colonnes */
+            gap: 20px;
+            padding: 30px;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            width: 80%;
+            max-width: 1000px;
+            margin-top: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: #444;
+            margin-bottom: 8px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            background-color: #f9f9f9;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, select:focus {
+            border-color: #5c6bc0;
+            outline: none;
+        }
+
+        /* Formulaire de la somme totale */
+        .result {
+            grid-column: span 2; /* Spanning across both columns */
+            font-size: 18px;
+            color: #333;
+            font-weight: bold;
+            padding-top: 10px;
+        }
+
+        /* Groupement des boutons */
+        .button-group {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        button {
+            padding: 15px 25px;
+            font-size: 16px;
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #3f4e89;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-bar">
+        <!-- Logo à gauche -->
+        <img src="logo_agil.png" alt="Logo de la société" class="logo">
+        <div class="title">Encaissement des Produits</div>
+    </div>
+
+    <div class="form-container">
+        <div class="form-group">
+            <label for="codeDepot">Code de Dépôt :</label>
+            <input type="text" id="codeDepot">
+        </div>
+
+        <div class="form-group">
+            <label for="ville">Ville :</label>
+            <input type="text" id="ville">
+        </div>
+
+        <div class="form-group">
+            <label for="date">Date :</label>
+            <input type="date" id="date" value="<?php echo date('Y-m-d'); ?>">
+        </div>
+
+        <div class="form-group">
+            <label for="refCommande">Référence de Commande :</label>
+            <input type="text" id="refCommande">
+        </div>
+
+        <div class="form-group">
+            <label for="refOperation">Référence de l'Opération :</label>
+            <input type="text" id="refOperation">
+        </div>
+
+        <div class="form-group">
+            <label for="compteClient">Compte Client :</label>
+            <input type="text" id="compteClient">
+        </div>
+
+        <div class="form-group">
+            <label for="nomClient">Nom du Client :</label>
+            <input type="text" id="nomClient">
+        </div>
+
+        <div class="form-group">
+            <label for="montantTotal">Montant Total :</label>
+            <input type="number" id="montantTotal" value="0" oninput="calculerReste()">
+        </div>
+
+        <div class="form-group">
+            <label for="retenue">Retenue :</label>
+            <input type="number" id="retenue" value="0" oninput="calculerReste()">
+        </div>
+
+        <div class="form-group">
+            <label for="montantBL">Montant BL/BLF :</label>
+            <input type="number" id="montantBL" value="0" oninput="calculerReste()">
+        </div>
+
+        <div class="form-group">
+            <label for="resteEncaisser">Reste à Encaisser :</label>
+            <input type="number" id="resteEncaisser" value="0" readonly>
+        </div>
+
+        <div class="form-group">
+            <label for="methodePaiement">Méthode de Paiement :</label>
+            <select id="methodePaiement" onchange="majMontantPaiement()">
+                <option value="">Sélectionnez une méthode</option>
+                <option value="espèces">Espèces</option>
+                <option value="chèques">Chèques</option>
+                <option value="virement">Virement</option>
+                <option value="P_Au_S">P Au S</option>
+                <option value="traites">Traites</option>
+                <option value="cartesSNDP">Cartes Bon SNDP</option>
+                <option value="bonValeur">Bon Valeur</option>
+                <option value="cartePetro">Carte Pétrolière</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="montantPaiement">Montant de Paiement :</label>
+            <input type="number" id="montantPaiement" value="0" oninput="calculerReste()">
+        </div>
+
+        <div class="result">
+            <label for="total">Total :</label>
+            <input type="number" id="total" value="0" readonly>
+        </div>
+    </div>
+
+    <div class="button-group">
+        <button onclick="enregistrer()">Enregistrer</button>
+        <button onclick="imprimer()">Imprimer</button>
+    </div>
+
+    <script>
+        function calculerReste() {
+            var montantTotal = parseFloat(document.getElementById('montantTotal').value) || 0;
+            var retenue = parseFloat(document.getElementById('retenue').value) || 0;
+            var montantBL = parseFloat(document.getElementById('montantBL').value) || 0;
+            var resteEncaisser = montantTotal - retenue - montantBL;
+            document.getElementById('resteEncaisser').value = resteEncaisser.toFixed(2);
+            calculerTotal();
+        }
+
+        function majMontantPaiement() {
+            var paiement = parseFloat(document.getElementById('montantPaiement').value) || 0;
+            var total = parseFloat(document.getElementById('resteEncaisser').value) || 0;
+            document.getElementById('total').value = (paiement + total).toFixed(2);
+        }
+
+        function calculerTotal() {
+            var paiement = parseFloat(document.getElementById('montantPaiement').value) || 0;
+            var total = parseFloat(document.getElementById('resteEncaisser').value) || 0;
+            document.getElementById('total').value = (paiement + total).toFixed(2);
+        }
+
+        function enregistrer() {
+            alert("Les informations ont été enregistrées !");
+        }
+
+        function imprimer() {
+            window.print();
+        }
+    </script>
+</body>
+</html>

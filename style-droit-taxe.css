@@ -1,0 +1,113 @@
+/* style.css */
+
+/* Reset some default styles */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 40px;
+    background-color: #f0f2f5;
+    color: #2c3e50;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.header-bar {
+    background-color: #0056b3;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+}
+
+.logo img {
+    height: 50px;
+    margin-right: 15px;
+}
+
+.title {
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.header {
+    text-align: center;
+    padding: 30px;
+    border-bottom: 2px solid #eef2f7;
+}
+
+.header .date {
+    font-size: 18px;
+    color: #073e8d;
+    font-weight: 500;
+    margin-top: 5px;
+}
+
+h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #0056b3;
+}
+
+main {
+    padding: 20px; /* Ajout d'un padding pour le contenu principal */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+    width: 25%;
+}
+
+th {
+    background-color: #007BFF;
+    color: white;
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #e1e1e1;
+}
+
+tfoot td {
+    font-weight: bold;
+    background-color: #e9ecef;
+}
+
+.print-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+.print-button:hover {
+    background-color: #218838;
+}
+@media print {
+    .print-button {
+        display: none;
+    }
+}

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commandes de Fuel</title>
+    <link rel="stylesheet" href="stylle.css">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        .save-btn, button {
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #121bb5;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .save-btn:hover, button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Bande bleue avec logo et titre -->
+    <div class="header-bar">
+        <div class="logo">
+            <img src="logo_agil.png" alt="Logo de la société">
+        </div>
+        <div class="title"> Commandes de Fuel </div>
+    </div>
+    <div class="container">
+        <table id="commandes-table">
+            <thead>
+                <tr>
+                    <th>Matricule de Camion</th>
+                    <th>Référence de Commande</th>
+                    <th>Localité</th>
+                    <th>Nom de Client</th>
+                    <th>Quantité</th>
+                    <th>Remarques</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Lignes vides ajoutées dynamiquement par JavaScript -->
+            </tbody>
+        </table>
+        <button class="save-btn" onclick="saveAndRedirect()">Enregistrer la Commande</button>
+        <button class="cancel-btn" onclick="clearForm()">Annuler</button>
+    </div>
+
+    <script>
+        // Fonction pour ajouter des lignes vides dynamiquement
+        function addEmptyRows(table, numberOfRows) {
+            for (let i = 0; i < numberOfRows; i++) {
+                const row = table.insertRow();
+                for (let j = 0; j < table.rows[0].cells.length; j++) {
+                    const cell = row.insertCell(j);
+                    if (j === 4) {  // Cellule pour la quantité (type number)
+                        const input = document.createElement("input");
+                        input.type = "number";
+                        input.placeholder = "Quantité";
+                        cell.appendChild(input);
+                    } else {
+                        const input = document.createElement("input");
+                        input.type = "text";
+                        input.placeholder = 
+                            j === 0 ? "Matricule" :
+                            j === 1 ? "Référence" :
+                            j === 2 ? "Localité" :
+                            j === 3 ? "Nom Client" : "Remarques";
+                        cell.appendChild(input);
+                    }
+                }
+            }
+        }
+
+        // Fonction pour vider tous les champs du tableau
+        function clearForm() {
+            const inputs = document.querySelectorAll('tbody input');
+            inputs.forEach(input => {
+                input.value = ''; // Vider chaque champ
+            });
+        }
+
+        // Fonction pour rediriger après avoir enregistré la commande
+        function saveAndRedirect() {
+            // Vous pouvez ajouter une logique ici pour sauvegarder les données, si nécessaire.
+            console.log("Commande enregistrée !");
+            // Redirection vers la page des listes des commandes de fuel
+            window.location.href = 'Listes_Commandes_Fuel.html';
+        }
+
+        const table = document.getElementById("commandes-table");
+        addEmptyRows(table, 10); // Ajoute 10 lignes vides pour occuper la page
+    </script>
+
+    <div class="footer">
+        <p>&copy; 2025 SNDP. Tous droits réservés.</p>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion de Commandes et Dispatching</title>
+    <link rel="stylesheet" href="gestion_commandes.css">
+</head>
+<body>
+    <!-- Bande bleue avec logo et titre -->
+    <div class="header-bar">
+        <div class="logo">
+            <img src="logo_agil.png" alt="Logo de la société">
+        </div>
+        <div class="title">Gestion de Commandes</div>
+    </div>
+
+    <!-- Contenu principal -->
+    <div class="main-container">
+        <div class="options-container">
+            <!-- Gestion de Commandes Simples -->
+            <div class="option-card">
+                <h2>Gestion de Commandes Simples</h2>
+                <p>Accédez à la gestion des commandes simples pour un suivi efficace.</p>
+                <button onclick="window.location.href='traitment_des commandess.html'">Accéder</button>
+            </div>
+            
+            <!-- Gestion de Commandes Soutes -->
+            <div class="option-card">
+                <h2>Gestion de Commandes Soutes</h2>
+                <p>Suivi des commandes soutes et optimisation des ressources.</p>
+                <button onclick="redirect('gestion_commandes_soutes.html')">Accéder</button>
+            </div>
+
+            <!-- Gestion de Transferts -->
+            <div class="option-card">
+                <h2>Gestion de Transferts</h2>
+                <p>Gérez les transferts logistiques et assurez une traçabilité optimale.</p>
+                <button onclick="redirect('transferts.html')">Accéder</button>
+            </div>
+
+            <!-- Nouvelle Option pour Mouvement de la Porte -->
+            <div class="option-card">
+                <h2>Mouvement de la Porte</h2>
+                <p>Suivi des mouvements d'entrée et de sortie des produits.</p>
+                <button onclick="redirect('mouvement_porte.html')">Accéder</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function redirect(url) {
+            window.location.href = url;
+        }
+    </script>
+</body>
+</html>

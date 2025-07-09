@@ -1,0 +1,125 @@
+/* Style global */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f7fc;
+    color: #333;
+}
+
+/* Bande bleue avec logo et titre */
+.header-bar {
+    background-color: #0056b3;
+    color: #fff;
+    padding: 20px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-bar .logo img {
+    height: 80px;
+}
+
+.header-bar .title {
+    font-size: 2.2em;
+    font-weight: 600;
+}
+
+/* Contenu principal */
+.main-container {
+    padding: 30px 50px;
+    background-color: #fff;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Grille des formulaires */
+.form-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Deux colonnes égales */
+    gap: 20px; /* Espacement entre les colonnes */
+    margin-bottom: 30px;
+}
+
+/* Style des labels et champs */
+.form-row {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-row label {
+    font-size: 1.1em;
+    color: #333;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.form-row input {
+    padding: 12px;
+    font-size: 1.1em;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background-color: #f9f9f9;
+    box-sizing: border-box;
+}
+
+/* Focus des champs */
+.form-row input:focus {
+    border-color: #0056b3;
+    outline: none;
+    background-color: #fff;
+}
+
+/* Tableau des produits */
+.produit-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.produit-table th, .produit-table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.produit-table th {
+    background-color: #f1f1f1;
+}
+
+/* Conteneur des boutons */
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.button-container button {
+    padding: 12px 30px;
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button-container button:hover {
+    background-color: #003d7f;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .form-container {
+        grid-template-columns: 1fr; /* Une seule colonne sur mobile */
+    }
+    
+    .button-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+}

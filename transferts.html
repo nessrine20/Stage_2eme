@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transfert de Commandes</title>
+    <link rel="stylesheet" href="transfert.css">
+</head>
+<body>
+    <!-- Bande bleue avec logo et titre -->
+    <div class="header-bar">
+        <div class="logo">
+            <img src="logo_agil.png" alt="Logo de la société">
+        </div>
+        <div class="title">Transfert de Commandes</div>
+    </div>
+
+    <!-- Contenu principal -->
+    <div class="main-container">
+        <h2>Détails du Transfert</h2>
+        
+        <!-- Formulaire de transfert -->
+        <div class="form-container">
+            <div class="form-row">
+                <label for="code_depot">Code Dépôt</label>
+                <input type="text" id="code_depot" name="code_depot" required>
+            </div>
+            <div class="form-row">
+                <label for="reference_transfert">Référence de Transfert</label>
+                <input type="text" id="reference_transfert" name="reference_transfert" required>
+            </div>
+            <div class="form-row">
+                <label for="depot">Dépôt</label>
+                <input type="text" id="depot" name="depot" required>
+            </div>
+            <div class="form-row">
+                <label for="date_transfert">Date de Transfert</label>
+                <input type="date" id="date_transfert" name="date_transfert" required>
+            </div>
+            <div class="form-row">
+                <label for="type_transfert">Type de Transfert</label>
+                <input type="text" id="type_transfert" name="type_transfert" required>
+            </div>
+            <div class="form-row">
+                <label for="reference_depot">Référence et Date du Dépôt</label>
+                <input type="text" id="reference_depot" name="reference_depot" required>
+            </div>
+            <div class="form-row">
+                <label for="date_livraison">Date de Livraison</label>
+                <input type="date" id="date_livraison" name="date_livraison" required>
+            </div>
+        </div>
+
+        <!-- Tableau des produits -->
+        <div class="form-section">
+            <h3>Détails des Produits</h3>
+            <table id="produitsTable">
+                <thead>
+                    <tr>
+                        <th>Code & Libellé Produit</th>
+                        <th>Unité</th>
+                        <th>Quantité Commandée</th>
+                        <th>Code Douane</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Lignes du tableau seront ajoutées dynamiquement -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Boutons -->
+        <div class="button-container">
+            <button id="enregistrerTransfert">Enregistrer Transfert</button>
+            <button id="annulerTransfert">Annuler</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Fonction pour gérer l'ajout de lignes dans le tableau des produits
+            function addProductRow() {
+                const tableBody = document.querySelector('#produitsTable tbody');
+                const newRow = tableBody.insertRow();
+                
+                newRow.innerHTML = `  
+                    <td><input type="text" name="code_libelle_produit" required></td>
+                    <td><input type="text" name="unite" required></td>
+                    <td><input type="number" name="quantite_commande" required></td>
+                    <td><input type="text" name="code_douane" required></td>
+                `;
+            }
+
+            // Ajouter une ligne dès le chargement de la page (par exemple 5 lignes par défaut)
+            for (let i = 0; i < 5; i++) {
+                addProductRow();
+            }
+
+            // Lorsque le bouton "Enregistrer Transfert" est cliqué
+            document.getElementById('enregistrerTransfert').addEventListener('click', function () {
+                // Enregistrer les données si nécessaire (par exemple, en localStorage ou dans une base de données)
+                // Votre logique pour l'enregistrement du transfert va ici...
+
+                // Affichage de l'alerte de confirmation
+                alert("Transfert enregistré !");
+            });
+
+            // Lorsque le bouton "Annuler" est cliqué
+            document.getElementById('annulerTransfert').addEventListener('click', function () {
+                const form = document.querySelector('form');
+                form.reset(); // Réinitialise tous les champs du formulaire
+            });
+        });
+    </script>
+</body>
+</html>

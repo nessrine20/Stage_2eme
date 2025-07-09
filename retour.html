@@ -1,0 +1,144 @@
+<!DOCTYPE html>  <!-- Bande bleue avec logo et titre -->
+    <div class="header-bar">
+        <div class="logo">
+            <img src="logo_agil.png" alt="Logo de la société">
+        </div>
+        <div class="title"> Retour de commandes  </div>
+    </div>
+
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> service de Retour </title>
+    <link rel="stylesheet" href="retour_commandes.css">
+</head>
+<body>
+
+   
+    <!-- Contenu principal -->
+    <div class="main-container">
+
+        <!-- Commandes Initiales -->
+        <div class="form-section">
+            <h2>Commandes Initiales</h2>
+            <div class="form-container">
+                <div class="form-row">
+                    <label for="reference_feuille_route">Référence de Feuille de Route</label>
+                    <input type="text" id="reference_feuille_route" name="reference_feuille_route" required>
+                </div>
+                <div class="form-row">
+                    <label for="date">Date</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+                <div class="form-row">
+                    <label for="transporteur">Transporteur (Société de Transport)</label>
+                    <input type="text" id="transporteur" name="transporteur" required>
+                </div>
+                <div class="form-row">
+                    <label for="matricule_camion">Matricule de Camion</label>
+                    <input type="text" id="matricule_camion" name="matricule_camion" required>
+                </div>
+                <div class="form-row">
+                    <label for="numero_citerne">Numéro de Citerne</label>
+                    <input type="text" id="numero_citerne" name="numero_citerne" required>
+                </div>
+                <div class="form-row">
+                    <label for="reference_BL">Référence de BL / BLF</label>
+                    <input type="text" id="reference_BL" name="reference_BL" required>
+                </div>
+                <div class="form-row">
+                    <label for="client">Client</label>
+                    <input type="text" id="client" name="client" required>
+                </div>
+                <div class="form-row">
+                    <label for="produit">Code & Libellé Produit</label>
+                    <input type="text" id="produit" name="produit" required>
+                </div>
+                <div class="form-row">
+                    <label for="quantite_livree">Quantité Livrée</label>
+                    <input type="number" id="quantite_livree" name="quantite_livree" required>
+                </div>
+                <div class="form-row">
+                    <label for="quantite_comptee">Quantité Comptée</label>
+                    <input type="number" id="quantite_comptee" name="quantite_comptee" required>
+                </div>
+            </div>
+        </div>
+
+        <!-- Nouvelles Livraisons -->
+        <div class="form-section">
+            <h2>Nouvelles Livraisons</h2>
+            <div class="form-container">
+                <div class="form-row">
+                    <label for="client_livraison">Client</label>
+                    <input type="text" id="client_livraison" name="client_livraison" required>
+                </div>
+                <div class="form-row">
+                    <label for="point_chute">Point de Chute</label>
+                    <input type="text" id="point_chute" name="point_chute" required>
+                </div>
+                <div class="form-row">
+                    <label for="date_livraison">Date de Livraison</label>
+                    <input type="date" id="date_livraison" name="date_livraison" required>
+                </div>
+                <div class="form-row">
+                    <label for="produit_livraison">Produit</label>
+                    <input type="text" id="produit_livraison" name="produit_livraison" required>
+                </div>
+                <div class="form-row">
+                    <label for="quantite_livree_livraison">Quantité Livrée</label>
+                    <input type="number" id="quantite_livree_livraison" name="quantite_livree_livraison" required>
+                </div>
+                <div class="form-row">
+                    <label for="quantite_comptee_livraison">Quantité Comptée</label>
+                    <input type="number" id="quantite_comptee_livraison" name="quantite_comptee_livraison" required>
+                </div>
+            </div>
+        </div>
+
+        <!-- Retour Produit -->
+        <div class="form-section">
+            <h2>Retour Produit</h2>
+            <div class="form-container">
+                <div class="form-row">
+                    <label for="produit_retour">Code & Libellé Produit</label>
+                    <input type="text" id="produit_retour" name="produit_retour" required>
+                </div>
+                <div class="form-row">
+                    <label for="quantite_prelevee">Quantité Prélevée</label>
+                    <input type="number" id="quantite_prelevee" name="quantite_prelevee" required>
+                </div>
+                <div class="form-row">
+                    <label for="quantite_comptable">Quantité Comptable</label>
+                    <input type="number" id="quantite_comptable" name="quantite_comptable" required>
+                </div>
+            </div>
+        </div>
+
+        <!-- Boutons -->
+        <div class="button-container">
+            <button id="enregistrerRetour">Enregistrer Retour</button>
+            <button id="annulerRetour">Annuler</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Fonction pour gérer le bouton "Enregistrer Retour"
+            document.getElementById('enregistrerRetour').addEventListener('click', function () {
+                // Enregistrer les données et rediriger vers une autre page si nécessaire
+                alert('Retour de commande enregistré');
+            });
+
+            // Fonction d'annulation
+            document.getElementById('annulerRetour').addEventListener('click', function () {
+                // Réinitialiser tous les champs
+                const inputs = document.querySelectorAll('input');
+                inputs.forEach(input => input.value = ""); // Effacer les valeurs des champs
+            });
+        });
+    </script>
+
+</body>
+</html>
